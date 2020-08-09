@@ -1,0 +1,42 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 256 256" style="enable-background:new 0 0 256 256;" xml:space="preserve">
+<style type="text/css">
+	.st0{fill:url(#SVGID_1_);}
+	.st1{fill:url(#SVGID_2_);}
+	.st2{fill:url(#SVGID_3_);}
+	.st3{fill:none;}
+</style>
+<rect x="83.8" y="86.4" width="40.5" height="82.3"/>
+<polygon points="165.6,86.4 165.6,126.6 125.7,86.4 "/>
+<polygon points="165.6,128.2 165.6,168.6 125.7,168.6 "/>
+<rect x="166.5" y="86.4" width="40.7" height="82.3"/>
+<polygon points="248.6,86.4 248.6,127.5 207.4,86.4 "/>
+<radialGradient id="SVGID_1_" cx="139.3946" cy="175.4921" r="116.3571" gradientTransform="matrix(1 0 0 -1 0 256)" gradientUnits="userSpaceOnUse">
+	<stop  offset="0.1221" style="stop-color:#F49F25"/>
+	<stop  offset="0.2074" style="stop-color:#F3952E"/>
+	<stop  offset="0.3711" style="stop-color:#EF7A3D"/>
+	<stop  offset="0.5944" style="stop-color:#EA444A"/>
+	<stop  offset="0.6785" style="stop-color:#E8214D"/>
+</radialGradient>
+<polygon class="st0" points="164.9,127.5 125.4,167.4 125.4,87.6 "/>
+<radialGradient id="SVGID_2_" cx="203.8517" cy="123.7007" r="66.5709" fx="197.1201" fy="123.6912" gradientTransform="matrix(0.9823 0 0 -0.9823 3.021 257.2842)" gradientUnits="userSpaceOnUse">
+	<stop  offset="0.2308" style="stop-color:#E95E48"/>
+	<stop  offset="0.3566" style="stop-color:#E95A49"/>
+	<stop  offset="0.4809" style="stop-color:#E94F4A"/>
+	<stop  offset="0.6041" style="stop-color:#E83A4B"/>
+	<stop  offset="0.6785" style="stop-color:#E7224C"/>
+</radialGradient>
+<circle class="st1" cx="228.6" cy="148.9" r="20.7"/>
+<radialGradient id="SVGID_3_" cx="-129.0191" cy="132.9019" r="84.1461" gradientTransform="matrix(0.7071 0.7071 0.7071 -0.7071 31.2532 256.6906)" gradientUnits="userSpaceOnUse">
+	<stop  offset="0.1982" style="stop-color:#F9A970"/>
+	<stop  offset="0.2985" style="stop-color:#F9A96E"/>
+	<stop  offset="0.3976" style="stop-color:#F8A766"/>
+	<stop  offset="0.4962" style="stop-color:#F7A557"/>
+	<stop  offset="0.5939" style="stop-color:#F5A140"/>
+	<stop  offset="0.6785" style="stop-color:#F49E25"/>
+</radialGradient>
+<path class="st2" d="M75.5,96.4l-56.8,56.8c-15.2-15.7-15.1-40.8,0.4-56.3C34.7,81.3,59.8,81.1,75.5,96.4z"/>
+<path d="M71.4,158.2c-15.5,15.5-40.6,15.7-56.3,0.4l56.8-56.8C87.1,117.6,86.9,142.7,71.4,158.2z"/>
+<line class="st3" x1="165.6" y1="127.9" x2="165.6" y2="125.7"/>
+<line class="st3" x1="167.2" y1="126.6" x2="166" y2="127.8"/>
+<polygon class="st3" points="164.9,127.5 125.4,167.4 125.4,87.6 "/>
+</svg>

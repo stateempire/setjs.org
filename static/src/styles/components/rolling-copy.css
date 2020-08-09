@@ -1,0 +1,21 @@
+/* Rolling Copy */
+.rolling-copy {
+  @apply relative;
+
+  > * {
+    @apply absolute top-0 w-full text-center opacity-0;
+    transition: all 0.55s, transform 0.66s;
+
+    transform: translateY(30px);
+
+    &.in {
+      @apply opacity-100;
+      transform: translateY(0);
+    }
+
+    &.out {
+      @apply opacity-0;
+      transform: translateY(-30px);
+    }
+  }
+}

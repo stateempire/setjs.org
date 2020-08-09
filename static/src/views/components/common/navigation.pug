@@ -1,0 +1,22 @@
+nav.flex.items-center.justify-between.flex-wrap(role='navigation', aria-label='Top Navigation', data-template='common/navigation')
+  .w-full.flex.items-center
+    .flex.items-center.flex-shrink-0.logo-block
+      a.logo(data-href='/')
+        img(src='/images/common/logotype.svg', alt=sitename)
+
+    .flex.items-center.justify-end.flex-grow.w-auto.hamburger-block
+      button.hamburger(type='button' data-act='click' data-func='toggleNav' data-arg='nav-open' data-bind='navOpen:toggleClass,active')
+        span.hamburger-box
+          span.hamburger-inner
+
+    .flex.items-center.justify-end.flex-grow.w-auto(data-name='navMenu', data-bind='navOpen:toggleClass,open')
+      a(target='_blank', href='//github.com/stateempire/setjs.org') GitHub v1.0.*
+
+      //- Languages
+      .border-top
+        .menu-dropdown.language
+          a.menu-dropdown-btn.set-arrow-down(href='#'): span(data-bind='@lang.navigation.header.language')
+          .menu-dropdown-list.right
+            a(data-act='click', data-func='setLang', data-arg='en') English
+            a(data-act='click', data-func='setLang', data-arg='es') Español
+            a(data-act='click', data-func='setLang', data-arg='ja') 日本人

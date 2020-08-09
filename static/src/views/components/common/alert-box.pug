@@ -1,0 +1,12 @@
+section.flex.items-center(data-template='common/alert-box')
+  .container
+    .flex.flex-wrap.-mx-2
+      .w-full.px-2.text-center
+        h3(data-bind='title:str,Brilliant Light')
+        h6(data-bind='message')
+        p.error(data-bind='errorMsg')
+
+    .flex.flex-wrap
+      .w-full.text-center
+        a.button.dark.inline-block.w-5o12.mx-1.hollow.no(data-if='noBtn' data-act='click' data-func='no' data-bind='noTxt:str,Cancel|t' class='{o:noCls')
+        a.button.dark.inline-block.w-5o12.mx-1.ok(data-act='click' data-func='ok' data-bind='okTxt:str,OK|t' class='{o:okCls}')

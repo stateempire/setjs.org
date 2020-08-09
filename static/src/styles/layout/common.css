@@ -1,0 +1,151 @@
+/* purgecss start ignore */
+body {
+  transition: background-color 0.12s ease-in-out;
+
+  #main-content {
+    min-height: 90vh;
+  }
+
+  nav,
+  .nav-overlay,
+  footer,
+  main > header,
+  main > section {
+    @apply px-6;
+
+    @screen md {
+      @apply px-10;
+    }
+
+    @screen lg {
+      @apply px-16;
+    }
+  }
+
+  main {
+    min-height: 100%;
+
+    background-color: transparent;
+    transition: background-color 0.33s ease-in-out;
+  }
+
+  nav {
+    a {
+      &:not(.logo) {
+        @apply tracking-widest;
+      }
+    }
+  }
+
+  figure {
+    @apply .relative;
+
+    z-index: 21;
+  }
+
+  form {
+    &.newsletter {
+      button {
+        @apply absolute !important;
+      }
+    }
+  }
+
+  a {
+
+  }
+
+  table {
+    @screen md {
+      line-height: 3;
+    }
+
+    transition: opacity 400ms ease-in-out;
+    will-change: opacity;
+
+    tr {
+      box-shadow: inset 0 -1px 0 0 rgba($black, 0.055);
+
+      @screen xm {
+        @apply block shadow-none;
+
+        padding-bottom: 20px;
+      }
+    }
+
+    th, td {
+      @screen xm {
+        @apply w-full block shadow-none pl-8;
+      }
+
+      p {
+        @apply m-0;
+      }
+    }
+
+    @screen md {
+      th, td {
+        @apply w-3o12;
+
+        &:first-child {
+          @apply w-1o12;
+        }
+      }
+    }
+  }
+
+  blockquote {
+    @apply relative border-0;
+    @apply mb-10;
+
+    @screen sm {
+      @apply -mx-10;
+    }
+
+    quotes: "\201C""\201D""\2018""\2019";
+
+    p:last-child {
+      @apply m-0;
+    }
+  }
+
+  .grid {
+    display: grid;
+    grid-gap: 40px 40px;
+
+    @for $i from 1 to 14 {
+      &.gr-$i {
+        grid-template-columns: repeat($i,1fr);
+      }
+    }
+  }
+
+  /* Overrides */
+  .card {
+    .category, .published {
+      font-family: $font-mono;
+    }
+
+    .card-copy {
+      .meta {
+        .tags {
+          @apply block;
+        }
+      }
+    }
+
+    .card-image {
+
+    }
+  }
+
+  &:not(#home) {
+    nav {
+      &.js-scrolling-down, &.js-scrolling-up {
+
+
+      }
+    }
+  }
+}
+/* purgecss end ignore */

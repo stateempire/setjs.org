@@ -1,0 +1,67 @@
+/* Tabs */
+$tabs-padding-x: 15px;
+$tabs-padding-y: 15px;
+
+.tabs {
+  border-bottom: 1px solid #ccc;
+
+  &.expanded {
+    @apply flex flex-wrap flex-row;
+
+    div, a {
+      @apply m-0 flex-grow;
+    }
+  }
+
+  div, a {
+    @apply inline-block text-center;
+
+    margin-bottom: -1px;
+    padding: $tabs-padding-x $tabs-padding-y;
+
+    color: rgba($black, 0.30);
+    border: 1px solid transparent;
+
+    &.complete {
+
+    }
+
+    &.active, &.complete {
+      color: $black;
+      border-bottom: 2px solid $black;
+
+      &:hover {
+        cursor: pointer;
+      }
+    }
+
+    &.title {
+      @apply relative;
+
+      color: $black;
+      border-bottom: 2px solid $white;
+
+      font-weight: 400;
+
+      padding-left: 0;
+      padding-right: calc($tabs-padding-x * 2);
+
+      &:after {
+        @apply absolute;
+        content: '';
+        top: 50%;
+        right: calc($tabs-padding-x / 2);
+
+        width: 1px;
+        height: 22px;
+
+        background: $light-grey;
+        transform: translateY(-50%);
+      }
+    }
+
+    span {
+      margin-left: 10px;
+    }
+  }
+}

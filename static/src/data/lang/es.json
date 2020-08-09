@@ -1,0 +1,27 @@
+{
+  "navigation": {
+    "header": {
+      "language": "Idioma"
+    }
+  },
+  "home": {
+    "meta": {
+      "title": "SETjs - State Empire modelo",
+      "description": "SETjs - State Empire modelo"
+    }
+  },
+  "notFound": {
+    "meta": {
+      "title": "Extraviado",
+      "description": "La página solicitada no existe"
+    }
+  },
+  "error": {
+    "meta": {
+      "title": "Error",
+      "description": "Ocurrió un error"
+    },
+    "connectionError": "Ocurrió un error. Asegúrate de estar conectado y vuelve a intentarlo",
+    "authError": "No estás autorizado para ver esta página."
+  }
+}

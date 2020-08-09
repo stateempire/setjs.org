@@ -1,0 +1,162 @@
+/***
+ ***
+ *** setjs - inline-fonts v2.04
+ ***
+ ***/
+@charset 'UTF-8';
+
+@font-face {
+  font-family: 'set';
+  src: url('../fonts/set/set.woff') format('woff'),
+       url('../fonts/set/set.ttf') format('truetype');
+  font-weight: normal;
+  font-style: normal;
+}
+
+[data-icon]:before {
+  font-family: 'set' !important;
+  content: attr(data-icon);
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+[class^='set-']:before,
+[class*=' set-']:before {
+  font-family: 'set' !important;
+  font-style: normal !important;
+  font-weight: normal !important;
+  font-variant: normal !important;
+  text-transform: none !important;
+  speak: none;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.bump {
+  &:before {
+    position: relative;
+    top: 2px;
+
+    margin-right: 8px;
+    margin-left: 8px;
+  }
+}
+
+.set-arrow-down:before {
+  content: "\61";
+}
+.set-alert:before {
+  content: "\62";
+}
+.set-message:before {
+  content: "\63";
+}
+.set-settings:before {
+  content: "\64";
+}
+.set-search:before {
+  content: "\65";
+}
+.set-check:before {
+  content: "\66";
+}
+.set-checklite:before {
+  content: "\67";
+}
+.set-clipboard:before {
+  content: "\68";
+}
+.set-edit:before {
+  content: "\69";
+}
+.set-arrow-right:before {
+  content: "\6a";
+}
+.set-arrow-left:before {
+  content: "\6b";
+}
+.set-inbox:before {
+  content: "\6c";
+}
+.set-globe:before {
+  content: "\6d";
+}
+.set-instagram:before {
+  content: "\6e";
+}
+.set-more:before {
+  content: "\6f";
+}
+.set-close:before {
+  content: "\70";
+}
+.set-facebook:before {
+  content: "\71";
+}
+.set-twitter:before {
+  content: "\72";
+}
+.set-linkedin:before {
+  content: "\73";
+}
+.set-play:before {
+  content: "\74";
+}
+.set-plus:before {
+  content: "\75";
+}
+.set-filter:before {
+  content: "\76";
+}
+.set-calendar:before {
+  content: "\77";
+}
+.set-user:before {
+  content: "\78";
+}
+.set-box:before {
+  content: "\79";
+}
+.set-help:before {
+  content: "\7a";
+}
+.set-book:before {
+  content: "\41";
+}
+.set-creditcard:before {
+  content: "\42";
+}
+.set-grid:before {
+  content: "\43";
+}
+.set-trash:before {
+  content: "\44";
+}
+.set-draft:before {
+  content: "\45";
+}
+.set-unlisted:before {
+  content: "\46";
+}
+.set-published:before {
+  content: "\47";
+}
+.set-shop:before {
+  content: "\48";
+}
+.set-award:before {
+  content: "\49";
+}
+.set-mail:before {
+  content: "\4a";
+}
+.set-link:before {
+  content: "\4b";
+}

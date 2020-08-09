@@ -1,0 +1,16 @@
+footer {
+  a {
+    @apply inline-block mb-2;
+
+    font-size: $navigation-font-size;
+    font-weight: $navigation-font-weight;
+    font-family: $font-body;
+    text-transform: $navigation-font-case;
+  }
+
+  p {
+    @apply m-0;
+
+    font-size: $navigation-font-size;
+  }
+}

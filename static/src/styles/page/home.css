@@ -1,0 +1,32 @@
+#home {
+  background-color: $light-grey;
+
+  header {
+
+  }
+
+  section {
+    &.intro {
+      padding-top: calc($navigation-height * 2);
+    }
+
+    &.binding {
+
+    }
+
+    &.roles {
+      .msg {
+        color: $blue;
+        border: 1px solid $blue;
+      }
+    }
+
+    &.lazyload {
+
+    }
+  }
+
+  footer {
+
+  }
+}

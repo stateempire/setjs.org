@@ -1,0 +1,111 @@
+.hide {
+  display: none !important;
+}
+
+.absolute-center {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+}
+
+.horizontal-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.vertical-center {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.rotate-0 {
+  transform: rotate(0deg);
+}
+
+.rotate-45 {
+  transform: rotate(45deg);
+}
+
+.rotate-90 {
+  transform: rotate(90deg);
+}
+
+.rotate-135 {
+  transform: rotate(135deg);
+}
+
+.rotate-180 {
+  transform: rotate(180deg);
+}
+
+.rotate-225 {
+  transform: rotate(225deg);
+}
+
+.rotate-270 {
+  transform: rotate(270deg);
+}
+
+.rotate-315 {
+  transform: rotate(315deg);
+}
+
+.ellipsis {
+  overflow: hidden !important;
+  text-overflow: ellipsis !important;
+  display: -webkit-box !important;
+
+  max-height: 82px !important;
+  -webkit-line-clamp: 3 !important;
+  -webkit-box-orient: vertical;
+}
+
+.loading {
+  &:after {
+    content: '';
+
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: $loading-spinner-size;
+    height: $loading-spinner-size;
+
+    margin-top: calc(-$loading-spinner-size / 2);
+    margin-left: calc(-$loading-spinner-size / 2);
+
+    border-radius: 50%;
+    border: $loading-spinner-stroke solid $loading-spinner-background;
+    border-top-color: $loading-spinner-colour;
+    box-sizing: border-box;
+
+    animation: spinner .6s linear infinite;
+  }
+}
+
+::-moz-selection {
+  color: $selection-highlight-color;
+  background: $selection-highlight-background;
+}
+
+::selection {
+  color: $selection-highlight-color;
+  background: $selection-highlight-background;
+}
+
+.sr-only {
+  position: absolute;
+
+  width: 1px;
+  height: 1px;
+
+  padding: 0;
+  border: 0;
+
+  overflow: hidden;
+  white-space: nowrap;
+
+  clip: rect(0, 0, 0, 0);
+}

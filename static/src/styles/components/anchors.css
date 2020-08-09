@@ -1,0 +1,130 @@
+button, .button {
+  @apply relative cursor-pointer;
+
+  font-size: $button-font-size;
+  font-weight: $button-font-weight;
+  text-transform: $button-case;
+
+  padding: $button-padding;
+  border-radius: $button-radius;
+
+  &.small {
+    padding: $button-padding-small;
+  }
+
+  &.light {
+    color: $button-color-light;
+    background-color: $button-background-light;
+
+    &.hollow {
+      color: $button-background-light;
+      border: 1px solid $button-background-light;
+      background-color: transparent;
+    }
+  }
+
+  &.dark {
+    color: $button-color-dark;
+    background-color: $button-background-dark;
+
+    &.hollow {
+      color: $button-background-dark;
+      border: 1px solid $button-background-dark;
+      background-color: transparent;
+    }
+  }
+
+  &.danger {
+    color: $white;
+    background-color: $error;
+
+    &.hollow {
+      color: $error;
+      border: 1px solid $error;
+      background-color: transparent;
+    }
+  }
+
+  .set-arrow-right {
+    @apply relative left-0;
+
+    top: 2px;
+    margin-left: 10px;
+
+    transition: all 0.33s ease-in-out;
+  }
+
+  &:hover {
+    .set-arrow-right {
+      left: 4px;
+    }
+  }
+}
+
+a {
+  @apply relative inline-block cursor-pointer;
+
+  font-weight: $anchor-font-weight;
+  text-decoration: $anchor-text-decoration;
+
+  transition: all 0.33s ease-in-out;
+
+  &.light {
+    &.underline {
+      &:after {
+        background-color: $anchor-color-light;
+      }
+    }
+  }
+
+  &.dark {
+    &:hover {
+        color: $anchor-color-dark-hover;
+    }
+
+    &.underline {
+      &:after {
+        background-color: $anchor-color-dark;
+      }
+
+      &:hover {
+        &:after {
+          background-color: $anchor-color-dark-hover;
+        }
+      }
+    }
+  }
+
+  &.underline {
+    @apply no-underline;
+
+    &:after {
+      @apply absolute left-0 opacity-25;
+      @apply w-full;
+
+      content: '';
+      top: 100%;
+
+      height: $anchor-underline-thickness;
+
+      transition: all 0.3s, transform 0.3s;
+    }
+
+    &:hover {
+      &:after {
+        @apply opacity-100;
+        transform: translateY(-$anchor-underline-thickness-hover);
+        height: $anchor-underline-thickness-hover;
+      }
+    }
+  }
+
+  .set-arrow-right {
+    @apply relative left-0;
+
+    top: 3px;
+    margin-left: 6px;
+
+    transition: all 0.33s ease-in-out;
+  }
+}

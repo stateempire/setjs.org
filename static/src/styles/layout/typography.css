@@ -1,0 +1,112 @@
+html, body {
+  @apply antialiased;
+  color: $body-font-color;
+
+  font-family: $font-body;
+  font-weight: $body-font-weight;
+  line-height: $body-line-height;
+}
+
+li, p {
+  font-size: $body-font-size;
+}
+
+p {
+  @apply mb-8;
+  color: $body-font-color;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $font-heading;
+  color: $body-font-color;
+
+  line-height: calc(1.5em + (1.5 - 1.2) * ((100vw - 640px)/(1600 - 640)));
+}
+
+blockquote {
+  font-family: $font-quote;
+}
+
+h1 {
+  font-size: $(h1-min)px;
+  font-weight: $h1-weight;
+  letter-spacing: $h1-tracking;
+
+  @screen sm {
+    font-size: calc($(h1-min)px + ($h1-max - $h1-min) * ((100vw - 640px) / (1600 - 640)));
+  }
+
+  @screen xxl {
+    font-size: $(h1-max)px;
+  }
+}
+
+h2 {
+  font-size: $(h2-min)px;
+  font-weight: $h2-weight;
+  letter-spacing: $h2-tracking;
+
+  @screen sm {
+    font-size: calc($(h2-min)px + ($h2-max - $h2-min) * ((100vw - 640px) / (1600 - 640)));
+  }
+
+  @screen xxl {
+    font-size: $(h2-max)px;
+  }
+}
+
+h3 {
+  font-size: $(h3-min)px;
+  font-weight: $h3-weight;
+  letter-spacing: $h3-tracking;
+
+  @screen sm {
+    font-size: calc($(h3-min)px + ($h3-max - $h3-min) * ((100vw - 640px) / (1600 - 640)));
+  }
+
+  @screen xxl {
+    font-size: $(h3-max)px;
+  }
+}
+
+h4 {
+  font-size: $(h4-min)px;
+  font-weight: $h4-weight;
+  letter-spacing: $h4-tracking;
+
+  @screen sm {
+    font-size: calc($(h4-min)px + ($h4-max - $h4-min) * ((100vw - 640px) / (1600 - 640)));
+  }
+
+  @screen xxl {
+    font-size: $(h4-max)px;
+  }
+}
+
+h5 {
+  font-size: $(h5-min)px;
+  font-weight: $h5-weight;
+  letter-spacing: $h5-tracking;
+
+  @screen sm {
+    font-size: calc($(h5-min)px + ($h5-max - $h5-min) * ((100vw - 640px) / (1600 - 640)));
+  }
+
+  @screen xxl {
+    font-size: $(h5-max)px;
+  }
+}
+
+h6 {
+  font-size: $(h6-min)px;
+  font-weight: $h6-weight;
+  letter-spacing: $h6-tracking;
+
+  @screen sm {
+    font-size: calc($(h6-min)px + ($h6-max - $h6-min) * ((100vw - 640px) / (1600 - 640)));
+  }
+
+  @screen xxl {
+    font-size: $(h6-max)px;
+  }
+}

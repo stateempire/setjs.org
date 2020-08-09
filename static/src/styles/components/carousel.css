@@ -1,0 +1,230 @@
+.carousel {
+  @apply relative;
+  @apply w-full h-full;
+  @apply flex;
+
+  transition: all 0.66s cubic-bezier(.6, .2, 0, 1);
+  /* transition: all 0.44s ease-in-out; */
+
+  &.carousel-grab {
+    @apply w-full;
+
+    .slides {
+
+    }
+
+    .slide {
+      @apply cursor-move;
+      height: auto;
+      overflow: hidden;
+
+      /* article {
+        @apply float-left;
+        @apply items-center;
+
+        cursor: grab;
+        width: 560px;
+      } */
+    }
+  }
+
+  .slide {
+    @apply relative;
+    @apply w-full h-full;
+    @apply flex flex-shrink-0;
+
+    flex-flow: row wrap;
+    cursor: move;
+    cursor: grab;
+
+    .index {
+      @apply absolute;
+
+      right: 10px;
+      bottom: 10px;
+    }
+  }
+
+  &.gallery {
+    /* @apply flex; */
+    /* @apply items-center; */
+
+    .slide {
+      @apply h-screen;
+      @apply w-screen;
+
+      /* align-items: center; */
+      /* justify-content: center; */
+
+      > div {
+        @apply absolute-center;
+        /* @apply relative; */
+        /* @apply vertical-center; */
+
+        /* min-width: 50vw; */
+        /* max-width: 75vw; */
+        /* max-height: 75vh; */
+
+        width: auto;
+        min-width: 70vw;
+        max-width: 70vw;
+
+        height: auto;
+        max-height: 70vh;
+
+        transition: all 0.66s cubic-bezier(.6, .2, 0, 1);
+
+        video, img, .plyr {
+          width: auto;
+          min-width: 70vw;
+          max-width: 70vw;
+
+          height: auto;
+          max-height: 70vh;
+
+          object-fit: contain;
+
+          transition: all 0.66s cubic-bezier(.6, .2, 0, 1);
+
+          /* height: auto;
+          max-height: calc(100vh - 300px);
+          max-width: calc(100vw - (1.875rem * 2));
+          width: auto;
+          max-width: 65vw; */
+        }
+      }
+
+      &.is-previous, &.is-next {
+        /* background-color: red; */
+
+        z-index: 99;
+      }
+
+      &.is-previous {
+        > div {
+          /* left: calc(100% + $carousel-navigation-mobile-width); */
+          /* transform: translateY(-50%) translateX(-100%); */
+
+          @screen md {
+            /* left: calc(100% + $carousel-navigation-width); */
+          }
+
+          video, img, .plyr {
+            /* object-position: right; */
+          }
+        }
+      }
+
+      &.active {
+        /* background-color: green; */
+
+        > div {
+          /* @apply absolute-center; */
+        }
+      }
+
+      &.is-next {
+        > div {
+          /* left: calc(0% - $carousel-navigation-mobile-width); */
+          /* transform: translateY(-50%) translateX(0%); */
+
+          @screen md {
+            /* left: calc(0% - $carousel-navigation-width); */
+          }
+
+          video, img, .plyr {
+            /* object-position: left; */
+          }
+        }
+      }
+    }
+  }
+}
+
+.carousel-container, .carousel-meta {
+  @apply relative;
+}
+
+.carousel-meta {
+  .links {
+    .link {
+      @apply inline-block;
+      @apply cursor-pointer;
+
+      font-family: $font-sans;
+
+      &.active {
+        font-family: $font-anchor;
+      }
+
+      &:not(:last-child) {
+        &:after {
+          @apply inline-block;
+          @apply px-2;
+
+          content: '–';
+        }
+      }
+    }
+  }
+}
+
+.nav-buttons {
+  @apply relative;
+
+  /* height: $carousel-navigation-mobile-width; */
+
+  @screen md {
+    /* height: $carousel-navigation-width; */
+  }
+
+  .left-btn, .right-btn {
+    @apply absolute top-0;
+    @apply block rounded-full;
+    @apply cursor-pointer;
+
+    width: $carousel-navigation-mobile-width;
+    height: $carousel-navigation-mobile-width;
+
+    @screen md {
+      width: $carousel-navigation-width;
+      height: $carousel-navigation-width;
+    }
+
+    background-color: $black;
+    transition: opacity 0.66s cubic-bezier(.6, .2, 0, 1);
+
+    &:before {
+      @apply absolute-center;
+
+      font-family: 'set';
+      font-size: 20px;
+
+      color: $white;
+
+      @screen md {
+        font-size: 30px;
+      }
+    }
+
+    &.disabled {
+      opacity: 0;
+    }
+  }
+
+  .left-btn {
+    @apply left-0;
+
+    &:before {
+      content: '\6b';
+    }
+  }
+
+  .right-btn {
+    @apply right-0;
+
+    &:before {
+      content: '\6a';
+    }
+  }
+}

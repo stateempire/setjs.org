@@ -1,0 +1,37 @@
+body:after {
+  @apply fixed top-0 right-0 m-2 px-2 py-1 bg-white rounded-sm uppercase text-xs font-black;
+
+  content: '*';
+  box-shadow: $shadow-medium;
+  z-index: 1001;
+}
+
+@screen sm {
+  body:after {
+    content: 'sm';
+  }
+}
+
+@screen md {
+  body:after {
+    content: 'md';
+  }
+}
+
+@screen lg {
+  body:after {
+    content: 'lg';
+  }
+}
+
+@screen xl {
+  body:after {
+    content: 'xl';
+  }
+}
+
+@screen xxl {
+  body:after {
+    content: 'xxl';
+  }
+}

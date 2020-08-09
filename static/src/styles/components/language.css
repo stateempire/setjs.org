@@ -1,0 +1,7 @@
+/* Language */
+nav {
+  .language {
+    @apply border-l;
+    border-color: rgba($navigation-color, 0.2);
+  }
+}

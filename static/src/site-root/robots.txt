@@ -1,0 +1,3 @@
+Sitemap: https://set.stateempire.com/sitemap.xml
+User-agent:*
+Disallow:

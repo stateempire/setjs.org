@@ -1,0 +1,98 @@
+/* Light Box / Modal */
+.lightbox {
+  @apply fixed inset-0 w-full h-full select-none;
+  @apply items-center justify-center opacity-0 z-0;
+
+  background-color: $lightbox-background-overlay;
+  transition: all 0.15s ease-in-out;
+
+  .inner {
+    @apply absolute-center opacity-0;
+
+    width: $lightbox-width-inner;
+    max-width: $lightbox-width-max;
+
+    background-color: $lightbox-background-inner;
+    box-shadow: $lightbox-shadow;
+
+    transition: all 0.66s ease-in-out;
+
+    .specsheet {
+      @apply block;
+    }
+  }
+
+  .set-close {
+    @apply absolute top-0 right-0;
+    @apply p-4 text-2xl outline-none;
+
+    @screen md {
+      @apply p-6;
+    }
+
+    @screen lg {
+      @apply p-10;
+      @apply text-3xl;
+    }
+
+    z-index: 11;
+  }
+
+  .nav-btn {
+    @apply fixed top-0 bg-transparent;
+    @apply block h-full cursor-pointer;
+    @apply outline-none;
+
+    width: calc($carousel-navigation-mobile-width * 2);
+    z-index: 9;
+
+    @screen md {
+      width: calc($carousel-navigation-width * 2);
+    }
+
+    &.left, &.right {
+      &:before {
+        @apply absolute-center;
+
+        font-family: 'set';
+        font-size: 20px;
+
+        color: $black;
+
+        @screen md {
+          font-size: 30px;
+        }
+      }
+    }
+
+    &.left {
+      @apply left-0;
+
+      &:before {
+        content: '\6b';
+      }
+    }
+
+    &.right {
+      @apply right-0;
+
+      &:before {
+        content: '\6a';
+      }
+    }
+  }
+}
+
+.lightbox-open {
+  @apply overflow-hidden !important;
+
+  .lightbox {
+    @apply opacity-100;
+
+    z-index: $lightbox-index;
+
+    .inner {
+      @apply opacity-100;
+    }
+  }
+}

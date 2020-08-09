@@ -1,0 +1,48 @@
+/* GDPR Cookie Notice */
+.cookie-overlay {
+  @apply block fixed;
+
+  bottom: 10px;
+  right: 10px;
+
+  z-index: 9999;
+
+  width: calc(100% - 20px);
+
+  background-color: $white;
+  border-radius: 4px;
+  box-shadow: $shadow-heavy;
+
+  @screen sm {
+    width: 560px;
+  }
+
+  a {
+    padding: 0 !important;
+
+    &:after {
+      @apply hidden;
+    }
+
+    &:hover {
+      color: $black !important;
+      text-decoration: underline;
+    }
+  }
+
+  p, button, a {
+    color: $black;
+    font-size: 12px !important;
+    letter-spacing: inherit !important;
+  }
+
+  button {
+    font-size: 11px !important;
+  }
+}
+
+.js-nav-open, .js-gdpr-hide {
+  .cookie-overlay {
+    @apply hidden;
+  }
+}
