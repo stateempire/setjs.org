@@ -1,7 +1,7 @@
-import setjs from '@stateempire/setjs';
+import {addAction} from 'core/acts-funcs.js';
 import {api} from 'core/api-helper.js';
 
-setjs.addAction('genericSubmit', function({comp, $el, success, error, arg}) {
+addAction('genericSubmit', function({comp, $el, success, error, arg}) {
   var apiName = $el.data('api');
   var isJSON = arg != 'form';
   api[apiName]({

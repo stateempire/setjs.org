@@ -1,13 +1,16 @@
-import setjs from '@stateempire/setjs';
+import {addFuncs} from 'core/acts-funcs.js';
 
-setjs.addFuncs({
+addFuncs({
   t: function (val, opts) {
     opts.$el.text(val);
   },
   h: function (val, opts) {
     opts.$el.html(val);
   },
-  dump: function(val, opts) {
-    opts.$el.html(JSON.stringify(val, null, 2));
+  gt: function(val, opts, other) {
+    return val > other;
+  },
+  lt: function(val, opts, other) {
+    return val < other;
   },
 });

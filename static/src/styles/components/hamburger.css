@@ -1,5 +1,5 @@
 /* Hamburger */
-.js-nav-open {
+.nav-open {
   nav {
     path, rect {
       color: $menu-burger-open-color !important;

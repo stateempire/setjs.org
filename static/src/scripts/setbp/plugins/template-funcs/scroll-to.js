@@ -1,6 +1,7 @@
 import setjs from '@stateempire/setjs';
+import {addFuncs} from 'core/acts-funcs.js';
 
-setjs.addFuncs({
+addFuncs({
   scrollTo: function(val, {$el}, selector, diff = 0, urlToUpdate) {
     diff = +diff;
     if (!$el.data('scrollToDone')) {

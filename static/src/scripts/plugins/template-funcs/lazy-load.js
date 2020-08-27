@@ -1,7 +1,7 @@
-import setjs from '@stateempire/setjs';
+import {addFuncs} from 'core/acts-funcs.js';
 import {makeLazy} from 'setbp/utility/lazy-media.js';
 
-setjs.addFuncs({
+addFuncs({
   lazyImg: makeLazy('src'),
   lazyBg: makeLazy('bg'),
 });

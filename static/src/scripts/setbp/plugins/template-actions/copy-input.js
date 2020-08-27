@@ -1,6 +1,6 @@
-import setjs from '@stateempire/setjs';
+import {addAction} from 'core/acts-funcs.js';
 
-setjs.addAction('copyInput', function(opts) {
+addAction('copyInput', function(opts) {
   var $parent = opts.$el.parent();
   var $msg = $parent.find('.msg');
   var copyText = $parent.find('input')[0];

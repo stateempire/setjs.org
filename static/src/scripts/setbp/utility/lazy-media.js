@@ -90,8 +90,8 @@ function loadFullMedia(item, height) {
 
 export function lazyMedia(opts) {
   var {$el} = opts;
-  if (!$el.data('lm')) {
-    $el.data('lm', 1);
+  if (!$el.attr('data-lm')) { // use attribute as other plugins may want to select it using this attribute
+    $el.attr('data-lm', 1);
     processLazy();
   }
   function processLazy() {

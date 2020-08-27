@@ -1,5 +1,6 @@
 import setjs from '@stateempire/setjs';
 import router from 'Router';
+import {act, func} from 'core/acts-funcs.js';
 import {defData} from 'core/app-data.js';
 import handleRoute from 'core/route-manager.js';
 import langHelper from 'setbp/kernel/lang-helper.js';
@@ -7,6 +8,9 @@ import langHelper from 'setbp/kernel/lang-helper.js';
 var lastLinkClick = 0;
 
 function fixPath(pathStr) {
+  if (RegExp('account/(confirm|reset-password)/.+/').test(pathStr)) {
+    return pathStr;
+  }
   return pathStr.replace(/\/{2,}/g, '/').replace(/(.+)\/$/, '$1');
 }
 
@@ -79,6 +83,8 @@ export default function() {
     handleRoute,
     fixPath,
     getLink,
+    act,
+    func,
     compUpdate,
     handleEvent,
     lang: langHelper.lang,

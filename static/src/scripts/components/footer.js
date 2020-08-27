@@ -7,6 +7,5 @@ import eventManager, {eventTypes} from 'setbp/kernel/event-manager.js';
 export default function() {
   var comp = setjs.getComp('common/footer');
   $('#footer-placeholder').replaceWith(comp.$root);
-  eventManager.addListener(eventTypes.lang, 'footer', comp.update, null);
   eventManager.addListener(eventTypes.route, 'footer', comp.update, null);
 }

@@ -1,5 +1,6 @@
 $.fn.accordion = function(opts = {}) {
-  this.find('.accordion-item').each(function(index) {
+  var $acordion = this;
+  $acordion.find('.accordion-item').each(function(index) {
     var $item = $(this);
     $item.find('.title').off('click').on('click', function() {
       if ($item.hasClass('open')) {
@@ -13,10 +14,14 @@ $.fn.accordion = function(opts = {}) {
     });
   });
   if (opts.open) {
-    let $open = this.find('.accordion-item.open').eq(0);
+    let $open = $acordion.find('.accordion-item.open').eq(0);
     if ($open.length) {
       opts.open($open, $open.index());
     }
   }
-  return this;
+  return $acordion.data('accordion', {
+    open: function(index) {
+      $acordion.find('.accordion-item').removeClass('open').eq(index).addClass('open');
+    }
+  });
 };

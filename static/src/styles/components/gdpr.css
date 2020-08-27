@@ -41,7 +41,7 @@
   }
 }
 
-.js-nav-open, .js-gdpr-hide {
+.nav-open, .gdpr-hide {
   .cookie-overlay {
     @apply hidden;
   }

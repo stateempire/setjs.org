@@ -1,6 +1,6 @@
-import setjs from '@stateempire/setjs';
+import {addFuncs} from 'core/acts-funcs.js';
 
-setjs.addFuncs({
+addFuncs({
   stopEnter: function(val, opts) {
     opts.$el.off('keypress').on('keypress', function(e) {
       if (e.which == 13) {

@@ -141,7 +141,7 @@ body {
 
   &:not(#home) {
     nav {
-      &.js-scrolling-down, &.js-scrolling-up {
+      &.scrolling-down, &.scrolling-up {
 
 
       }

@@ -5,7 +5,7 @@
 
   transition: all 0.33s cubic-bezier(.42,.05,.7, .54);
 
-  &.js-loaded {
+  &.loaded {
     transform: scale3d(1, 1, 1) !important;
 
     img {
@@ -36,7 +36,7 @@
                 opacity 300ms ease 0ms,
                 filter 300ms ease 0ms;
 
-    &:not(.js-loaded) {
+    &:not(.loaded) {
       @apply w-full;
 
       transform: scale(1.033);
@@ -47,7 +47,7 @@
     }
   }
 
-  .js-loaded {
+  .loaded {
     @apply opacity-100;
   }
 }
@@ -56,7 +56,7 @@ figure {
   &.lazy-img-container {
     @apply relative inline-block w-full overflow-hidden;
 
-    .lazy-load:not(.js-loaded) {
+    .lazy-load:not(.loaded) {
       filter: $loading-image-filter;
       image-rendering: $loading-image-rendering;
     }

@@ -13,10 +13,14 @@ $.fn.lightbox = function (opts = {}) {
   var $lightbox = $(`<div class="${mode}"></div>`).appendTo('body');
   var $inner = $('<div class="inner">').appendTo($lightbox);
   var $btnParent = opts.inner ? $inner : $lightbox;
-  var lightbox = {opts, $lightbox, $inner, destroy, close};
+  var lightbox = {opts, $lightbox, $inner, destroy, close, replaceContent};
   var openCls = `${mode}-open`;
   var openingCls = openCls + 'ing';
   var closingCls = `${mode}-closing`;
+
+  function replaceContent($content) {
+    $inner.empty().append($content.data('lightbox', lightbox));
+  }
 
   function destroy(done) {
     if (!lightbox.closed) {
@@ -42,7 +46,7 @@ $.fn.lightbox = function (opts = {}) {
         opts.carousel.$left = opts.carousel.$left || $('<div class="nav-btn left"></div>').appendTo($btnParent);
         opts.carousel.$right = opts.carousel.$right || $('<div class="nav-btn right"></div>').appendTo($btnParent);
       }
-      lightbox.carousel = (opts.carousel.$el || $inner).carousel(opts.carousel);
+      lightbox.carousel = (opts.carousel.$el || $inner).carousel(opts.carousel).data('carousel');
     }
   }
 

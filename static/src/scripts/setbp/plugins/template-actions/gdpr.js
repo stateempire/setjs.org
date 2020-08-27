@@ -1,8 +1,8 @@
 import eventManager, {eventTypes} from 'setbp/kernel/event-manager.js';
 import storage, {storageTypes} from 'setbp/kernel/storage.js';
-import setjs from '@stateempire/setjs';
+import {addAction} from 'core/acts-funcs.js';
 
-setjs.addAction('gdprAgree', function() {
+addAction('gdprAgree', function() {
   storage.set(storageTypes.gdpr, 1);
 });
 

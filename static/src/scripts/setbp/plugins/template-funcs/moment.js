@@ -1,7 +1,7 @@
 import moment from 'moment';
-import setjs from '@stateempire/setjs';
+import {addFuncs} from 'core/acts-funcs.js';
 
-setjs.addFuncs({
+addFuncs({
   moment: function(time, {$el}, format) {
     format = format || 'MMMM Do, YYYY.';
     $el.text((time && time._isAMomentObject ? time : moment(time)).format(format));

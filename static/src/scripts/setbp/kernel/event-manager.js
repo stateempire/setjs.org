@@ -17,6 +17,9 @@ var eventManager = {
     var listener = {priority: config.priority || 3, config, method, data, hasData: arguments.length > 3};
     events[type].push(listener);
     sort(events[type], 'priority');
+    if (typeof method != 'function') {
+      throw 'Not a function';
+    }
     return listener;
   },
   removeListener: function (type, listener) {
@@ -37,7 +40,7 @@ var eventManager = {
   }
 };
 
-eventManager.addListener(eventTypes.unload, 'em', function() {
+eventManager.addListener(eventTypes.unload, {p: 'em', priority: 5}, function() {
   $.each(events, function(name, list) {
     for (var i = list.length - 1; i >= 0; i--) {
       if (list[i].config.pageOnly) {

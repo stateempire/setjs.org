@@ -80,7 +80,7 @@ function loadPage(route) {
       if (actionOpts && actionOpts.jqErr) {
         errorHandler(0, 0, args[0]);
       } else {
-        errorHandler(...args);
+        errorHandler(actionOpts, ...args);
       }
     }
   })
@@ -126,7 +126,7 @@ function loadPage(route) {
     if (lastPage.id == id) {
       if (error == 404 || (jqXHR && jqXHR.status == 404)) {
         notFound();
-      } else if (jqXHR && jqXHR.status == 403) {
+      } else if (error == 403 || (jqXHR && jqXHR.status == 403)) {
         authError();
       } else if (!error) {
         connectionError();

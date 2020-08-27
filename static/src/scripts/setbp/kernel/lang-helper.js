@@ -1,8 +1,9 @@
 import setjs from '@stateempire/setjs';
-import eventManager, {eventTypes} from 'setbp/kernel/event-manager.js';
-import pageLoader from 'setbp/kernel/page-loader.js';
 import router from 'Router';
 import setup from 'config/setup.js';
+import {addAction} from 'core/acts-funcs.js';
+import eventManager, {eventTypes} from 'setbp/kernel/event-manager.js';
+import pageLoader from 'setbp/kernel/page-loader.js';
 
 var languages, lang, langData;
 
@@ -38,7 +39,7 @@ function setLang(_lang) {
   }
 }
 
-setjs.addAction('setLang', function({arg}) {
+addAction('setLang', function({arg}) {
   setLang(arg);
 });
 

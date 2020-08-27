@@ -97,3 +97,20 @@ export function spinIndex(limit, change, current = 0) {
   }
   return index % limit;
 }
+
+export function listOverlap(list1, list2, prop) {
+  var overlap = [];
+  list1.forEach(one => {
+    if (prop) {
+      let found = obtain(list2, one[prop], prop);
+      if (found) {
+        overlap.push(one);
+      }
+    } else {
+      if (list2.indexOf(one) >= 0) {
+        overlap.push(one);
+      }
+    }
+  });
+  return overlap;
+}

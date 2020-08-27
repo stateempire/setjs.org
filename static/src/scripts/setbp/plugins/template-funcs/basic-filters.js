@@ -1,11 +1,11 @@
-import setjs from '@stateempire/setjs';
+import {addFuncs} from 'core/acts-funcs.js';
 import {slugify, capitalize} from 'setbp/utility/strings.js';
 
 function number(val) {
   return isNaN(val) ? 0 : +val;
 }
 
-setjs.addFuncs({
+addFuncs({
   slugify,
   capitalize,
   number: function(val, opts, def) {

@@ -2,7 +2,7 @@
   visibility: hidden;
   opacity: 0;
 
-  &.js-animated {
+  &.animated {
     visibility: visible;
     opacity: 1;
   }

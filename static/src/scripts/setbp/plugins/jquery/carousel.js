@@ -1,3 +1,5 @@
+import eventManager, {eventTypes} from 'setbp/kernel/event-manager.js';
+
 $.fn.carousel = function (opts) {
   var index = opts.index || 0;
   var count = opts.count || opts.$items.length;
@@ -90,5 +92,10 @@ $.fn.carousel = function (opts) {
     selectSlide(index, true);
   });
 
-  return carousel;
+  if (!opts.keep) {
+    eventManager.addListener(eventTypes.unload, 'carousel', function() {
+      clearInterval(carousel.timerHandle);
+    });
+  }
+  return this.data('carousel', carousel);
 };

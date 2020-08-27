@@ -163,7 +163,7 @@ nav, .nav-overlay {
   }
 
   /* On Scroll Events  */
-  &.js-scrolling-down {
+  &.scrolling-down {
     pointer-events: none;
 
     [data-name='navMenu']:not(.open) {
@@ -173,12 +173,12 @@ nav, .nav-overlay {
     box-shadow: $navigation-shadow;
   }
 
-  &.js-scrolling-up {
+  &.scrolling-up {
     background-color: $navigation-background-scroll;
   }
 }
 
-.js-nav-open {
+.nav-open {
   overflow: hidden;
 
   [data-name='navMenu'] {

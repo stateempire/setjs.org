@@ -14,23 +14,23 @@ export function addApis(apis) {
   $.extend(api, apis);
 }
 
-export function dataGet(relativeUrl, opts) {
-  ajaxCall($.extend({useData: 1}, opts, {type: 'GET', relativeUrl}));
+export function dataGet(url, opts) {
+  ajaxCall($.extend({useData: 1}, opts, {type: 'GET', relativeUrl: url}));
 }
 
-export function dataFunc(relativeUrl) {
+export function dataFunc(url) {
   return function(opts) {
-    dataGet(relativeUrl, opts);
+    dataGet(url, opts);
   };
 }
 
-export function jsonSave(relativeUrl, type, opts) {
-  ajaxCall($.extend({isJSON: 1}, opts, {type, relativeUrl}));
+export function jsonSave(url, type, opts) {
+  ajaxCall($.extend({isJSON: 1}, opts, {type, relativeUrl: url}));
 }
 
-export function jsonFunc(relativeUrl, type = 'POST') {
+export function jsonFunc(url, type = 'POST') {
   return function(opts) {
-    jsonSave(relativeUrl, type, opts);
+    jsonSave(`${url}${opts.urlSeg || ''}`, type, opts);
   };
 }
 

@@ -1,5 +1,5 @@
-import setjs from '@stateempire/setjs';
+import {addAction} from 'core/acts-funcs.js';
 
-setjs.addAction('triggerSubmit', function(){
-  $('#main-content form button[type="submit"]').trigger('click');
+addAction('triggerSubmit', function(){
+  $('#main-content form [type="submit"]').trigger('click');
 });
