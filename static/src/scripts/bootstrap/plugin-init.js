@@ -1,3 +1,7 @@
+import {jqFuncs} from 'core/acts-funcs.js';
+
+jqFuncs(['accordion', 'forceNumber', 'instagram', 'marquee', 'selectize']);
+
 /*------------setbp plugins-----------*/
 import 'setbp/plugins/jquery/accordion.js';
 import 'setbp/plugins/jquery/carousel.js';

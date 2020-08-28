@@ -1,7 +1,6 @@
-import {jqList} from 'config/app-config.js';
-
 var functions = {};
 var actions = {};
+var jqList = ['attr', 'css', 'data', 'html', 'prop', 'text', 'toggleClass', 'val'];
 
 export function act(funcName) {
   if (actions[funcName]) {
@@ -25,6 +24,10 @@ export function func(funcName) {
   } else {
     throw {msg: 'No such function', name: funcName};
   }
+}
+
+export function jqFuncs(list) {
+  jqList = jqList.concat(list);
 }
 
 export function addAction(name, onFunc) {
