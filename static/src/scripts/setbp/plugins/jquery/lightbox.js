@@ -35,9 +35,11 @@ $.fn.lightbox = function (opts = {}) {
     }
   }
 
-  function close() {
-    !lightbox.closed && opts.close && opts.close();
-    destroy();
+  function close(force) {
+    if (!opts.noClose || force) {
+      !lightbox.closed && opts.close && opts.close();
+      destroy();
+    }
   }
 
   function initCarousel() {
@@ -52,7 +54,7 @@ $.fn.lightbox = function (opts = {}) {
 
   $(document).on('keydown.lightbox', function (e) {
     if (e.keyCode === 27) {
-      !opts.noClose && close();
+      close();
     } else if (lightbox.carousel && $(e.target).hasClass(openCls)) {
       if (e.keyCode === 37) {
         lightbox.carousel.prev();

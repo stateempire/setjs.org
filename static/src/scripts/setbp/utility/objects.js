@@ -52,6 +52,36 @@ function parsePath(path) {
   }
 }
 
+function resetItem(data, parts, key, config, index) {
+  var part = parts[index++];
+  if (index < parts.length) {
+    data = data[part];
+    if (Array.isArray(data)) {
+      data.forEach(function(listItem) {
+        resetItem(listItem, parts, key, config, index);
+      });
+    } else if (data) {
+      resetItem(data, parts, key, config, index);
+    }
+  } else {
+    if ('val' in config) {
+      data[part] = typeof config.val == 'function' ? config.val() : config.val;
+    } else if (config.arr) {
+      data[part] = [];
+    } else if (config.obj) {
+      data[part] = {};
+    } else {
+      delete data[part];
+    }
+  }
+}
+
+export function resetObject(data, resets) {
+  $.each(resets, function(key, config) {
+    resetItem(data, key.split('.'), key, config, 0);
+  });
+}
+
 function partIndex(part, arr) {
   return part.list ? part.index != null ? part.index : arr.length : null;
 }
@@ -110,5 +140,25 @@ export function storeValue(target, _path, _val) {
       }
     }
     target = tmp;
+  }
+}
+
+export function copyObj(target, source, props) {
+  props.forEach(prop => {
+    storeValue(target, prop, getProp(prop, source));
+  });
+  return target;
+}
+
+export function getProp(propPath, data, data2) {
+  let parts = propPath.split('.');
+  for (let j = 0; data && j < parts.length; j++) {
+    if (j == parts.length - 1 && parts[j] in data) {
+      return data[parts[j]];
+    }
+    data = data[parts[j]];
+  }
+  if (data2) {
+    return getProp(propPath, data2);
   }
 }

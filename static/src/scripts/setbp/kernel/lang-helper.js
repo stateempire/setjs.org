@@ -1,4 +1,4 @@
-import setjs from '@stateempire/setjs';
+import {getRoute, setRoute} from 'setbp/kernel/setjs.js';
 import router from 'Router';
 import setup from 'config/setup.js';
 import {addAction} from 'core/acts-funcs.js';
@@ -33,7 +33,7 @@ function setLang(_lang) {
     initData({
       error: pageLoader.connectionError,
       success: function() {
-        setjs.setRoute(setjs.route().path);
+        setRoute(getRoute().path);
       }
     });
   }

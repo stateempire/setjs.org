@@ -1,4 +1,4 @@
-import setjs from '@stateempire/setjs';
+import {getProp} from 'setbp/utility/objects.js';
 
 // https://davidwalsh.name/javascript-debounce-function#comment-509154
 // Returns a function, that, as long as it continues to be invoked, will only
@@ -52,6 +52,9 @@ export function batchCall({success, error, progress}) {
   return callManager;
 
   function go() {
+    if (!calls.length) {
+      success(result);
+    }
     calls.forEach(function(item) {
       item.func($.extend({}, item.opts, {
         error: function(errObj) {
@@ -61,7 +64,7 @@ export function batchCall({success, error, progress}) {
         success: function(res) {
           done++;
           if (item.key) {
-            result[item.key] = item.prop ? setjs.getProp(item.prop, res) : res;
+            result[item.key] = item.prop ? getProp(item.prop, res) : res;
             item.opts && item.opts.success && item.opts.success(res);
           }
           if (error != 1 && progress) {

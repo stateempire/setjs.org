@@ -1,13 +1,13 @@
-import setjs from '@stateempire/setjs';
+import getComp from 'setbp/template/component.js';
 import {loader, viewUpdate} from 'config/app-config.js';
 import {testRole} from 'setbp/kernel/roles.js';
 import storage, {storageTypes} from 'setbp/kernel/storage.js';
 import eventManager, {eventTypes} from 'setbp/kernel/event-manager.js';
 import {serialCall} from 'setbp/utility/calls.js';
 import {dummyPageFunc, getPage} from 'setbp/kernel/page-manager.js';
-import assetLoader from 'core/asset-loader.js';
+import {prePageAssets, postPageAssets} from 'core/asset-loader.js';
 
-var loginManager, lastPage, count = 1;
+var loginManager, pageData, count = 1;
 
 function setLoginManager(_loginManager) {
   loginManager = _loginManager;
@@ -18,7 +18,7 @@ function handleAuthError(type) {
 }
 
 function showError(data, compName='common/error') {
-  loader.loadContent(setjs.getComp(compName, typeof data == 'string' ? {msg: data} : data).$root, viewUpdate);
+  loader.loadContent(getComp(compName, typeof data == 'string' ? {msg: data} : data).$root, viewUpdate);
 }
 
 function authError() {
@@ -37,16 +37,16 @@ function notFound() {
   showError(null, 'common/404');
 }
 
-function unloadLastPage() {
-  if (lastPage && lastPage.comp) {
-    lastPage.page.unload && lastPage.page.unload(lastPage);
-    eventManager.raiseEvent(eventTypes.unload, lastPage);
+function unloadPage() {
+  if (pageData && pageData.pageComp) {
+    'unload' in pageData.page && pageData.page.unload(pageData);
+    eventManager.raiseEvent(eventTypes.unload, pageData);
   }
-  lastPage = null;
+  pageData = null;
 }
 
 function handleRoute(route) {
-  if (lastPage && lastPage.page.handleRoute && lastPage.page.handleRoute(lastPage, route)) {
+  if (pageData && pageData.page.handleRoute && pageData.page.handleRoute(pageData, route)) {
     viewUpdate();
   } else {
     loadPage(route);
@@ -58,7 +58,7 @@ function loadPage(route) {
   let id = count++;
   let progressTimeout;
 
-  unloadLastPage();
+  unloadPage();
   if (!page) {
     return notFound();
   }
@@ -70,11 +70,11 @@ function loadPage(route) {
       return loginManager.login();
     }
   }
-  lastPage = {id, page, route};
-  eventManager.raiseEvent(eventTypes.loadStart, lastPage);
+  pageData = {id, page, route};
+  eventManager.raiseEvent(eventTypes.loadStart, pageData);
   serialCall({
     condition: function() {
-      return lastPage.id == id;
+      return pageData.id == id;
     },
     error: function(actionOpts, ...args) {
       if (actionOpts && actionOpts.jqErr) {
@@ -84,46 +84,55 @@ function loadPage(route) {
       }
     }
   })
-  .add(assetLoader(page, route, progress))
-  .add(page.once, lastPage)
+  .add(prePageAssets(page, route, progress(10)))
+  .add(page.once, pageData)
   .add(preload)
-  .add(loadComp)
+  .add(postAssets)
   .go();
 
-  function progress({percent}) {
-    loader.progress(10 + percent / 10);
+  function progress(start) {
+    return function({percent}) {
+      loader.progress(start + percent / 10);
+    };
+  }
+
+  function postAssets(opts, ...args) {
+    clearTimeout(progressTimeout);
+    postPageAssets(page, route, progress(90))({
+      error: opts.error,
+      success: function() {
+        if (pageData.id == id) {
+          pageData.pageComp = page.comp(pageData, ...args);
+          eventManager.raiseEvent(eventTypes.loading, pageData);
+          loader.loadContent(pageData.pageComp.$root, function() {
+            'loaded' in page && page.loaded(pageData, ...args);
+            eventManager.raiseEvent(eventTypes.loaded, pageData);
+            viewUpdate();
+          });
+        }
+      },
+    });
   }
 
   function preload(opts) {
     page.once = dummyPageFunc; // initialized
-    loader.progress(20 + Math.random() * 30);
+    loader.progress(20 + Math.random() * 20);
     progressTimeout = setTimeout(loader.progress, 500, 40);
-    eventManager.raiseEvent(eventTypes.preload, lastPage);
+    eventManager.raiseEvent(eventTypes.preload, pageData);
     page.preload({
       page,
       route,
       progress: function(percent) {
         clearTimeout(progressTimeout);
-        loader.progress(50 + percent * 0.5);
+        loader.progress(40 + percent / 2);
       },
       error: opts.error,
       success: opts.success
     });
   }
 
-  function loadComp(opts, ...args) {
-    clearTimeout(progressTimeout);
-    lastPage.comp = page.getComp(lastPage, ...args);
-    eventManager.raiseEvent(eventTypes.loading, lastPage);
-    loader.loadContent(lastPage.comp.$root, function() {
-      page.loaded && page.loaded(lastPage, ...args);
-      eventManager.raiseEvent(eventTypes.loaded, lastPage);
-      viewUpdate();
-    });
-  }
-
   function errorHandler(error, errors, jqXHR) {
-    if (lastPage.id == id) {
+    if (pageData.id == id) {
       if (error == 404 || (jqXHR && jqXHR.status == 404)) {
         notFound();
       } else if (error == 403 || (jqXHR && jqXHR.status == 403)) {

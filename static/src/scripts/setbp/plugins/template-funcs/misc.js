@@ -13,4 +13,9 @@ addFuncs({
   lt: function(val, opts, other) {
     return val < other;
   },
+  plurify: function(number, {$el}, singular, plural) {
+    plural = plural || singular + 's';
+    number = number || 0;
+    $el.text(number + ' ' + (number == 1 ? singular : plural));
+  },
 });

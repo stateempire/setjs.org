@@ -1,7 +1,7 @@
-import setjs from '@stateempire/setjs';
+import getComp from 'setbp/template/component.js';
 import {addAction} from 'core/acts-funcs.js';
 
 addAction('videoLightbox', function({arg}) {
-  var mediaComp = setjs.getComp('common/video-lightbox', arg);
+  var mediaComp = getComp('common/video-lightbox', arg);
   mediaComp.$root.lightbox();
 });

@@ -1,4 +1,4 @@
-import setjs from '@stateempire/setjs';
+import getComp from 'setbp/template/component.js';
 import {addFuncs} from 'core/acts-funcs.js';
 
 addFuncs({
@@ -6,7 +6,7 @@ addFuncs({
     if (!$el.data('instaInit')) {
       $el.data('instaInit', 1);
       $.getJSON('https://www.instagram.com/' + name +'/?__a=1', function(res) {
-        var instaComp = setjs.getComp('common/instagram', {posts: res.graphql.user.edge_owner_to_timeline_media.edges.slice(0, +count)});
+        var instaComp = getComp('common/instagram', {posts: res.graphql.user.edge_owner_to_timeline_media.edges.slice(0, +count)});
         $el.append(instaComp.$root);
       });
     }

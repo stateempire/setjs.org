@@ -6,19 +6,6 @@ var eslint = require('gulp-eslint');
 var plumber = require('gulp-plumber');
 var {paths, env, settings} = require('../setup.js');
 
-var alias;
-
-if (settings.local_setjs) {
-  alias = {
-    Router: `setjs/router/${settings.routerName}-router.js`,
-    '@stateempire/setjs': `setjs/index.js`
-  };
-} else {
-  alias = {
-    Router: `@stateempire/setjs/src/router/${settings.routerName}-router.js`
-  };
-}
-
 var wpConfig = {
   output: {
     filename: 'bundle.js',
@@ -32,14 +19,16 @@ var wpConfig = {
   devtool: env.current.devtool || '', // https://webpack.js.org/configuration/devtool/
   mode: env.current.mode,// https://webpack.js.org/concepts/mode/
   resolve: {
-    alias: alias,
+    alias: {
+      Router: `setbp/router/${settings.routerName}-router.js`,
+    },
     modules: [paths.src.scripts, 'node_modules'],
   },
   module: {
     rules: [
       {
         test: /\.js$/,
-        exclude: /(node_modules)/,
+        exclude: /node_modules/,
         use: {
           loader: 'babel-loader',
           options: {

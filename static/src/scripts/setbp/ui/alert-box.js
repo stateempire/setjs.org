@@ -1,9 +1,9 @@
-import setjs from '@stateempire/setjs';
+import getComp from 'setbp/template/component.js';
 
 export default function(opts) {
   let isBusy = 0;
   let exOpts = $.extend({noBtn: opts.noTxt, noClose: 1}, opts);
-  let alertComp = setjs.getComp('common/alert-box', exOpts, {
+  let alertComp = getComp('common/alert-box', exOpts, {
     no: function() {
       if (isBusy) return;
       lightbox.destroy();

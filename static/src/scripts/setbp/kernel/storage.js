@@ -19,37 +19,36 @@ function raise(storeType) {
 function get(storeType, remove) {
   var val = memory[storeType.name] || localStorage.getItem(storeType.name);
   var def = storeType.defaultValue;
+  var type = storeType.type;
   if (remove) {
-    setTimeout(remove, 0, storeType); // remove after returning value
+    setTimeout(remove, 0, storeType); // remove after returning value, as an event could be raised
   }
-  switch (storeType.type) {
-    case 'boolean':
-      return +val === 1;
-    case 'number':
-      return +val || 0;
-    case 'object':
-      try {
-        return JSON.parse(val) || def;
-      } catch (e) {
-        return def;
-      }
-    default:
-      return val || def || '';
+  if (type == 'boolean') {
+    val = +val == 1;
+  } else if (type == 'number') {
+    val = isNaN(val) ? 0 : +val;
+  } else if (type == 'object') {
+    try {
+      val = JSON.parse(val);
+      val = val && typeof val == 'object' ? val : def;
+    } catch (e) {
+      val = def;
+    }
+  } else {
+    val = val || def || '';
   }
+  return val;
 }
 
-function set(storeType, value, inMemory) {
+function set(storeType, value) {
   if (storeType.type === 'object') {
     value = JSON.stringify(value || {});
   } else if (storeType.type === 'number') {
-    value = +value || 0;
-    if (typeof value !== 'number') {
-      value = storeType.defaultValue || 0;
-    }
+    value = isNaN(value) ? storeType.defaultValue || 0 : +value;
   } else if (storeType.type === 'boolean') {
     value = value ? 1 : 0;
   }
-  if (inMemory) {
+  if (storeType.memory) {
     memory[storeType.name] = value;
   } else {
     localStorage.setItem(storeType.name, value);
@@ -59,7 +58,7 @@ function set(storeType, value, inMemory) {
 
 function toggle(storeType) {
   if (storeType.type !== 'boolean') {
-    throw {msg: 'The value you want to toggle is not boolean.'};
+    throw 'The value you want to toggle is not boolean.';
   }
   var newVal = !get(storeType);
   set(storeType, newVal);

@@ -1,14 +1,14 @@
-import setjs from '@stateempire/setjs';
+import getComp from 'setbp/template/component.js';
 
 var pages = {};
 
 function createComp({route}) {
-  return setjs.getComp(route.path);
+  return getComp(route.path);
 }
 
 function createCompFunc(template) {
   return function() {
-    return setjs.getComp(template);
+    return getComp(template);
   };
 }
 
@@ -16,7 +16,7 @@ function createPage(template, folder) {
   template = folder ? folder + '/' + template : template;
   return {
     templates: [template],
-    getComp: folder ? createCompFunc(template) : createComp
+    comp: folder ? createCompFunc(template) : createComp
   };
 }
 
@@ -40,7 +40,6 @@ export function addPage(path, page) {
   }
   page.preload = 'preload' in page ? page.preload : dummyPageFunc;
   page.once = 'once' in page ? page.once : dummyPageFunc;
-  page.path = path;
   pages[path] = page;
 }
 
@@ -67,8 +66,8 @@ export function addFolderPages(folder, names) {
   names.forEach(function(name) {
     addPage(folder + '/' + name, {
       templates: [folder],
-      getComp: function() {
-        return setjs.getComp(folder + '/' + name);
+      comp: function() {
+        return getComp(folder + '/' + name);
       },
     });
   });

@@ -1,5 +1,5 @@
+import {setRoute, prevRoute} from 'setbp/kernel/setjs.js';
 import storage, {storageTypes} from 'setbp/kernel/storage.js';
-import setjs from '@stateempire/setjs';
 import eventManager from 'setbp/kernel/event-manager.js';
 import pageLoader from 'setbp/kernel/page-loader.js';
 import alertBox from 'setbp/ui/alert-box.js';
@@ -27,7 +27,7 @@ function allowRoute(route) {
       okTxt: 'Leave',
       no: function(alertController) {
         alertController.close();
-        setjs.setRoute(setjs.prevRoute().path, 1);
+        setRoute(prevRoute().path, 1);
       },
       ok: function(alertController) {
         pendingMsg = 0;
@@ -36,7 +36,7 @@ function allowRoute(route) {
       },
     });
   } else if (['login', 'forgot-password'].indexOf(pageId) >= 0 && storage.get(storageTypes.token)) {
-    setjs.setRoute();
+    setRoute();
   } else {
     return 1;
   }

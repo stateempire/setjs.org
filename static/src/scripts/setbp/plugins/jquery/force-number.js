@@ -1,7 +1,7 @@
 $.fn.forceNumber = function() {
   var $el = this;
   if (!$el.data('forceInit')) {
-    !$el.data('forceInit', 1);
+    $el.data('forceInit', 1);
     var lastVal = $el.val();
     $el.on('input.force', function() {
       var numStr = $el.val();

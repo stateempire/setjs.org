@@ -9,11 +9,12 @@ var {images} = require('./tasks/images.js');
 var {scripts} = require('./tasks/scripts.js');
 var {views} = require('./tasks/views.js');
 var {serve} = require('./tasks/serve.js');
+var {graph} = require('./tasks/graph.js');
 
 var dist = gulp.series(
   clean,
   gulp.parallel(copy, images, views, scripts),
-  styles
+  styles,
 );
 
 exports.test = function(cb) {
@@ -26,4 +27,5 @@ exports.views = views;
 exports.scripts = scripts;
 exports.dist = dist;
 exports.styles = gulp.series(views, styles);
+exports.graph = graph;
 exports.default = gulp.series(dist, serve);

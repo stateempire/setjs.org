@@ -1,9 +1,7 @@
-import setjs from '@stateempire/setjs';
-import router from 'Router';
-import {act, func} from 'core/acts-funcs.js';
-import {defData} from 'core/app-data.js';
-import handleRoute from 'core/route-manager.js';
+import {initSetjs, setRoute} from 'setbp/kernel/setjs.js';
+import {funcWithSelf} from 'setbp/utility/comp-helpers.js';
 import langHelper from 'setbp/kernel/lang-helper.js';
+import handleRoute from 'core/route-manager.js';
 
 var lastLinkClick = 0;
 
@@ -20,16 +18,14 @@ function getLink(subRoute) {
 }
 
 function compUpdate($selection) {
-  $selection.find('[data-href]').addBack('[data-href]').each(function(i, el) {
-    var $link = $(el);
-    var dHref = $link.attr('data-href');
+  funcWithSelf($selection, 'href', function($link, dHref) {
     if ($link.data('dHref') != dHref && !$link.closest('[data-no-links]').length) {
       if ($link.attr('target') != '_blank') {
         $link.off('.hr').on('click.hr', function(e) {
           if (!e.metaKey) {
             e.preventDefault();
             if (Date.now() - lastLinkClick > 900) {
-              setjs.setRoute(dHref);
+              setRoute(dHref);
               lastLinkClick = Date.now();
             }
           }
@@ -67,6 +63,7 @@ function handleEvent(args, func) {
         comp.busy = false;
         $el.removeClass('loading').addClass(cls);
         $button.prop('disabled', false);
+        $('body').removeClass('loading');
         if (comp.$formMsg) {
           comp.$formMsg.text(message || '');
         }
@@ -77,16 +74,12 @@ function handleEvent(args, func) {
 }
 
 export default function() {
-  setjs.init({
-    router,
-    defData,
-    handleRoute,
+  initSetjs({
     fixPath,
     getLink,
-    act,
-    func,
     compUpdate,
     handleEvent,
+    handleRoute,
     lang: langHelper.lang,
   });
 }

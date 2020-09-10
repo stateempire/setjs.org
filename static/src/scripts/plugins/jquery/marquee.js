@@ -1,5 +1,4 @@
 import anime from 'animejs';
-import {lazyPic} from 'setbp/utility/lazy-media.js';
 import eventManager, {eventTypes} from 'setbp/kernel/event-manager.js';
 
 var animations = [];
@@ -102,9 +101,6 @@ $.fn.marquee = function() {
       $marquee.append($el);
       width += $item.outerWidth();
       index++;
-      if ($el.find('source').length) {
-        lazyPic($el.find('source').closest('picture'));
-      }
     }
   }
 };

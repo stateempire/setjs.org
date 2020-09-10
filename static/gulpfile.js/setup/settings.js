@@ -9,8 +9,8 @@ var settings = {
 
 var yamlConfig = yaml.safeLoad(fs.readFileSync('../config.yml', 'utf8'));
 var currentConfig = Object.assign(yamlConfig, yamlConfig[env.current.name]);
+settings.api_url = '//' + currentConfig.app_url;
 Object.assign(settings, currentConfig, getLocalConfig());
-settings.api_url = settings.api_url || '//' + ((settings.domain + (settings.api_port ? ':' + settings.api_port: '') + settings.app_url));
 
 function getLocalConfig() {
   try {

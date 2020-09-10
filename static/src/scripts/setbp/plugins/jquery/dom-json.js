@@ -1,8 +1,9 @@
-$.fn.domJson = function(data = {}) {
+$.fn.domJson = function(data, resets) {
   var $el = this;
   var $marker = $('<div>').insertAfter($el);
   var $form = $('<form>').append($el);
-  $form.formJson(data);
+  data = data || {};
+  $form.formJson(data, resets);
   $marker.after($el).remove();
   return data;
 };

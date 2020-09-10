@@ -1,11 +1,10 @@
 import eventManager, {eventTypes} from 'setbp/kernel/event-manager.js';
-
-export let defData = {};
+import {setDefData} from 'setbp/kernel/basics.js';
 
 ['init', 'route', 'user', 'lang'].forEach(function(name) {
   eventManager.addListener(eventTypes[name], {id: 'data', priority: 1}, function(data) {
     name = name == 'init' ? 'route' : name;
-    defData['@' + name] = data;
+    setDefData(name, data);
   });
 });
 

@@ -1,4 +1,4 @@
-import setjs from '@stateempire/setjs';
+import {setRoute} from 'setbp/kernel/setjs.js';
 import {addFuncs} from 'core/acts-funcs.js';
 
 addFuncs({
@@ -8,7 +8,7 @@ addFuncs({
       $el.data('scrollToDone', 1).click(function() {
         $('html, body').animate({scrollTop: $(selector).offset().top + diff});
         if (urlToUpdate) {
-          setjs.setRoute(urlToUpdate, 1);
+          setRoute(urlToUpdate, 1);
         }
       });
     }

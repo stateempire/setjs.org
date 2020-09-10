@@ -1,4 +1,4 @@
-import setjs from '@stateempire/setjs';
+import {getProp} from 'setbp/utility/objects.js';
 import pageLoader from 'setbp/kernel/page-loader.js';
 import storage, {storageTypes} from 'setbp/kernel/storage.js';
 import setup from 'config/setup.js';
@@ -36,7 +36,7 @@ export function jsonFunc(url, type = 'POST') {
 
 export function getById(url, id = 'id') {
   return function(opts) {
-    dataGet(`${url}/${setjs.getProp(id, opts)}`, opts);
+    dataGet(`${url}/${getProp(id, opts)}`, opts);
   };
 }
 
@@ -48,7 +48,7 @@ export function getWithUrlSeg(url) {
 
 export function saveById(url, id = 'data.uuid') {
   return function(opts) {
-    jsonSave(url, setjs.getProp(id, opts) ? 'PUT' : 'POST', opts);
+    jsonSave(url, getProp(id, opts) ? 'PUT' : 'POST', opts);
   };
 }
 

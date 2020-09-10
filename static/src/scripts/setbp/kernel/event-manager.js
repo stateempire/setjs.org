@@ -52,3 +52,11 @@ eventManager.addListener(eventTypes.unload, {p: 'em', priority: 5}, function() {
 
 export {eventTypes};
 export default eventManager;
+
+export function addEventListeners(types, config, method, data) {
+  var listeners = [];
+  types.forEach(function(type) {
+    listeners.push(eventManager.addListener(type, config, method, data));
+  });
+  return listeners;
+}
