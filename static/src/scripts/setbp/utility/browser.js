@@ -1,5 +1,5 @@
 export function getQsMap(opts) {
-  var {names, sep} = opts || {};
+  var {names, sep, values} = opts || {};
   var pairs = (window.location.href.split('?')[1] || '').split('&');
   var result = {};
   pairs.forEach(function(pair) {
@@ -14,6 +14,13 @@ export function getQsMap(opts) {
   if (names) {
     Object.keys(result).forEach(key => {
       if (names.indexOf(key) < 0) {
+        delete result[key];
+      }
+    });
+  }
+  if (values) {
+    Object.keys(result).forEach(key => {
+      if (values[key] && values[key].indexOf(result[key]) < 0) {
         delete result[key];
       }
     });

@@ -6,6 +6,5 @@ eventManager.addListener(eventTypes.route, 'body', function() {
 });
 
 addAction('triggerSubmit', function(){
-  $('body').addClass('loading');
   $('#main-content form [type="submit"]').trigger('click');
 });

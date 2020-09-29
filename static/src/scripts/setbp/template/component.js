@@ -1,6 +1,6 @@
 import {fatal} from 'setbp/kernel/basics.js';
 import setjs from 'setbp/kernel/setjs.js';
-import {applyBindings, processIf} from 'setbp/template/binding.js';
+import {applyBindings, processIf, applyWatch, cleanupWatch} from 'setbp/template/binding.js';
 import {bindEvents} from 'setbp/template/events.js';
 import {storeItemByName, findWithSelf, funcWithSelf} from 'setbp/utility/comp-helpers.js';
 import {configData, getConfigTemplate, tmpStr} from 'setbp/template/template-config.js';
@@ -19,12 +19,10 @@ function processSlot($item, comp, data, slotConfig) {
 
 function renderList(comp, data, listData) {
   var config = listData.c;
-  var list = listData.list;
-  var $elements = $();
+  var oldList = listData.list;
+  var elements = [];
   var index = 0;
-  if (list) {
-    list.length = 0;
-  }
+  var list = listData.list = [];
   $.each(configData(config, data, config.list), function(key, val) {
     var itemData = {
       [listData.d]: index,
@@ -36,15 +34,17 @@ function renderList(comp, data, listData) {
       rd: comp.rComp && comp.rComp.data || data
     };
     var itemComp = createComponent(listData.t, itemData, comp.actions, comp);
-    $elements = $elements.add(itemComp.$root);
-    list && list.push(itemComp);
+    elements.push(itemComp.$root);
+    list.push(itemComp);
   });
-  if (!$elements.length && (config.alt || config.sub)) {
-    $elements = $elements.add(createComponent(getTemplate(config.alt, config.sub), listData, comp.actions, comp).$root);
+  if (!elements.length && (config.alt || config.sub)) {
+    elements.push(createComponent(getTemplate(config.alt, config.sub), listData, comp.actions, comp).$root);
   }
-  listData.$el.empty().append($elements);
-  listData.$elements && listData.$elements.remove();
-  listData.$elements = $elements;
+  listData.$el.empty().append(elements);
+  listData.$elements = $(elements);
+  oldList && oldList.forEach(comp => {
+    cleanupWatch(comp.data);
+  });
 }
 
 function createList($el, comp, data) {
@@ -54,7 +54,6 @@ function createList($el, comp, data) {
   var name = $el.data('name');
   if (name) {
     storeItemByName(comp, name, listData);
-    listData.list = [];
   }
   renderList(comp, data, listData);
 }
@@ -68,7 +67,7 @@ function createList($el, comp, data) {
  * @return {Object} returns the compiled template
  */
 function createComponent(templateStr, data, actions, pComp) {
-  var $root, $bindingElements, $actElements, $listElements, comp;
+  var $root, $watchElements, $bindingElements, $actElements, $listElements, comp;
   data = data || {};
   actions = actions || {};
   $root = $(tmpStr(templateStr, data));
@@ -107,6 +106,7 @@ function createComponent(templateStr, data, actions, pComp) {
   funcWithSelf($root, 'val', function($item, val) {
     $item.attr('value', val);
   });
+  $watchElements = findWithSelf($root, 'watch');
   $bindingElements = findWithSelf($root, 'bind');
   $actElements = findWithSelf($root, 'act');
   $listElements = findWithSelf($root, 'list');
@@ -123,6 +123,9 @@ function createComponent(templateStr, data, actions, pComp) {
   });
   $listElements.each(function(i, item) {
     createList($(item), comp, data);
+  });
+  $watchElements.each(function(i, item) {
+    applyWatch($(item), comp, data);
   });
   $bindingElements.each(function(i, item) {
     applyBindings($(item), comp, data);

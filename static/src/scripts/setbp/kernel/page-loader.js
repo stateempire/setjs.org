@@ -13,8 +13,8 @@ function setLoginManager(_loginManager) {
   loginManager = _loginManager;
 }
 
-function handleAuthError(type) {
-  return loginManager.handleAuthError(type);
+function handleAuthError(type, cb) {
+  return loginManager.handleAuthError(type, cb);
 }
 
 function showError(data, compName='common/error') {

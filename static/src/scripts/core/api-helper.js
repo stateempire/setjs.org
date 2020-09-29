@@ -56,7 +56,8 @@ export function saveById(url, id = 'data.uuid') {
  * Consolidate Ajax Call
  * @param {Object} opts - The options object
  */
-export function ajaxCall({isJSON, relativeUrl, type, data, success, error, complete, ignore401, noToken, useData}) {
+export function ajaxCall(ajaxOpts) {
+  var {isJSON, relativeUrl, type, data, success, error, complete, ignore401, noToken, useData} = ajaxOpts;
   var token = storage.get(storageTypes.token);
   var headers = (token && !noToken) ? {[setup.authHeader()]: 'Bearer ' + token} : null;
   var ajaxSettings = {
@@ -67,7 +68,9 @@ export function ajaxCall({isJSON, relativeUrl, type, data, success, error, compl
     success, // res, textStatus, jqXHR
     complete,
     error: function(jqXHR, textStatus, errorThrown) {
-      if (jqXHR.status === 401 && !ignore401 && pageLoader.handleAuthError(type)) {
+      if (jqXHR.status === 401 && !ignore401 && pageLoader.handleAuthError(type, function() {
+        ajaxCall(ajaxOpts);
+      })) {
         return;
       }
       var responseObj = jqXHR.responseJSON || {};
@@ -92,6 +95,9 @@ export function ajaxCall({isJSON, relativeUrl, type, data, success, error, compl
     ajaxSettings.success = function(res) {
       success(res.data, res);
     };
+  }
+  if (ajaxSettings.type != 'GET') {
+    $('body').addClass('loading');
   }
   $.ajax(ajaxSettings);
 }
