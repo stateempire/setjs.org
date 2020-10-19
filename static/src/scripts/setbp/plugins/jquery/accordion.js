@@ -1,31 +1,57 @@
-$.fn.accordion = function(opts = {}) {
-  var $acordion = this;
-  $acordion.find('.accordion-item').each(function() {
+$.fn.accordion = function(opts) {
+  var $accordion = this;
+  var aimationTime = opts.time || 500;
+  opts = typeof opts == 'object' ? opts : {};
+  $accordion.find('.accordion-item').each(function() {
     var $item = $(this);
-    var index = $item.index();
-    if (!$item.hasClass('accord-ready')) {
-      $item.addClass('accord-ready');
+    if (!$item.data('accord')) {
+      $item.data('accord', 1).find('.details').css({height: 0});
       $item.find('.title').on('click', function() {
-        if ($item.hasClass('open')) {
-          $item.removeClass('open');
-          opts.close && opts.close($item, index);
-        } else {
-          $item.siblings('.open').removeClass('open');
-          $item.addClass('open');
-          opts.open && opts.open($item, index);
-        }
+        toggle($item);
       });
     }
   });
-  if (opts.open) {
-    let $open = $acordion.find('.accordion-item.open').eq((opts.open || 1) - 1);
+  if (opts.index) {
+    let $open = $accordion.find('.accordion-item:nth-child(' + opts.index + ')');
     if ($open.length) {
-      opts.open($open, $open.index());
+      open($open);
     }
   }
-  return $acordion.data('accordion', {
-    toggle: function(index) {
-      $acordion.find('.accordion-item').removeClass('open').eq(index).addClass('open');
-    },
-  });
+  return $accordion.data('accordion', {toggle});
+
+  function toggle($item) {
+    $item = $item || $accordion.find('.accordion-item.open');
+    if ($item.length) {
+      if ($item.hasClass('open')) {
+        $item.removeClass('open').find('.details').animate({height: 0}, aimationTime);
+        opts.close && opts.close($item);
+      } else {
+        open($item);
+      }
+    }
+  }
+
+  function open($item) {
+    var $inner = $item.find('.inner');
+    var $prev = $item.siblings('.open').removeClass('open');
+    var innerHeight =  $inner.outerHeight();
+    var $summary = $accordion.closest('summary');
+    var $details = $item.find('.details');
+    if (innerHeight) {
+      if ($prev.length && $prev.index() < $item.index()) {
+        let scrollTop = $summary.scrollTop();
+        $summary.animate({
+          scrollTop: scrollTop - $prev.find('.details').height(),
+        }, aimationTime);
+      }
+      $prev.removeClass('open').find('.details').animate({height: 0}, aimationTime);
+      $item.addClass('open');
+      $details.animate({height: innerHeight}, aimationTime, function() {
+        $details.css('height', 'auto');
+      });
+      opts.open && opts.open($item, $item.index());
+    } else {
+      setTimeout(open, 250, $item);
+    }
+  }
 };

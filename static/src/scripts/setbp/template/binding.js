@@ -91,15 +91,18 @@ function createBindings(bindingStr, rdata, isIf) {
   }
 }
 
-function getBindingVal(binding, data) {
+function getBindingVal(binding, opts) {
   var val = binding.v;
   if (!binding.s) {
     if (val == '_') {
-      val = data;
+      val = opts.data;
     } else if (val == '#') {
       val = '';
     } else {
-      val = getPropDef(val, data);
+      val = getPropDef(val, opts.data);
+      if (typeof val == 'function') {
+        val = val(opts);
+      }
     }
   }
   return val;
@@ -110,7 +113,7 @@ function runFuncs(funcs, opts, val, applyText) {
     funcs.forEach(function(funcBinding) {
       var args = [val, opts];
       funcBinding.p && funcBinding.p.forEach(param => {
-        args.push(param.s ? param.v : getBindingVal(param, opts.data));
+        args.push(param.s ? param.v : getBindingVal(param, opts));
       });
       val = funcBinding.f.apply(opts, args);
     });
@@ -121,7 +124,7 @@ function runFuncs(funcs, opts, val, applyText) {
 }
 
 function getGroupVal(binding, opts, applyText) {
-  return runFuncs(binding.f, opts, getBindingVal(binding, opts.data), applyText);
+  return runFuncs(binding.f, opts, getBindingVal(binding, opts), applyText);
 }
 
 export function processIf($el, comp, data, dataIf) {

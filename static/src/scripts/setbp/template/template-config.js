@@ -16,13 +16,13 @@ export function getConfigTemplate(callerName, config, tId) {
   return templateStr;
 }
 
-export function configData(config, data, path) {
+export function configData(config, data) {
   var funcName = config.func;
-  var source = path ? getPropDef(path, data) : data;
+  var source = config.prop ? getPropDef(config.prop, data) : data;
   if (funcName) {
     let dataFunc = funcName && ((data.rd || data)[funcName] || func(funcName));
     typeof dataFunc != 'function' && fatal('Not a function', funcName, config, data);
-    source = dataFunc(config, source);
+    source = dataFunc(source, config, data);
   }
   return source;
 }

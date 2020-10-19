@@ -7,7 +7,7 @@ import {configData, getConfigTemplate, tmpStr} from 'setbp/template/template-con
 import {getTemplate} from 'setbp/template/templates.js';
 
 function processSlot($item, comp, data, slotConfig) {
-  let slotComp = createComponent(getConfigTemplate('slot', slotConfig), configData(slotConfig, data, slotConfig.prop), comp.actions, comp);
+  let slotComp = createComponent(getConfigTemplate('slot', slotConfig), configData(slotConfig, data), comp.actions, comp);
   let $items = slotConfig.contents ? slotComp.$root.contents() : slotComp.$root;
   slotConfig.name && storeItemByName(comp, slotConfig.name, slotComp);
   if (slotConfig.replace) {
@@ -23,7 +23,7 @@ function renderList(comp, data, listData) {
   var elements = [];
   var index = 0;
   var list = listData.list = [];
-  $.each(configData(config, data, config.list), function(key, val) {
+  $.each(configData(config, data), function(key, val) {
     var itemData = {
       [listData.d]: index,
       [listData.i]: ++index,
