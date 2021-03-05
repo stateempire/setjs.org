@@ -1,0 +1,46 @@
+/* purgecss start ignore */
+nav {
+  .logo {
+    img {
+      height: 30px;
+    }
+  }
+
+  a {
+    font-size: 16px;
+    letter-spacing: .16px;
+  }
+}
+
+main {
+  p {
+    a {
+      @apply font-semibold;
+    }
+  }
+
+  a {
+    &:not(.button) {
+      &[target='_blank'] {
+        &:after {
+          content: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAoAAAAKCAYAAACNMs+9AAAAQElEQVR42qXKwQkAIAxDUUdxtO6/RBQkQZvSi8I/pL4BoGw/XPkh4XigPmsUgh0626AjRsgxHTkUThsG2T/sIlzdTsp52kSS1wAAAABJRU5ErkJggg==);
+          margin: 0 3px 0 5px;
+        }
+      }
+    }
+  }
+}
+
+.progress-bar {
+  @apply fixed top-0;
+  @apply w-full;
+
+  height: 5px;
+  background: var(--loading-color);
+
+  z-index: calc(var(--index) + 1);
+
+  transition: width 0.2s linear;
+  will-change: width;
+}
+/* purgecss end ignore */

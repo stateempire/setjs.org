@@ -1,0 +1,70 @@
+{
+  "home": {
+    "meta": {
+      "title": "SETjs - The non-MVC framework for the internet by State Empire",
+      "description": "The easiest and fastest way to create your new internet project – this is not a new experiment, implemented in dozens of Fortune 500 companies and smaller."
+    }
+  },
+  "docs": {
+    "meta": {
+      "title": "Introduction to SET - SETjs Documentation",
+      "description": "First a few words about SetJS. SetJS is not a new experiment. It has been our main recipe for building Single Page Applications [SPAs] and JS heavy web projects. Parts of SetJS have been in production for more than 6 years."
+    },
+    "installation": {
+      "meta": {
+        "title": "Installing SET - SETjs Documentation",
+        "description": "Here’s a description of the main parts - Detailed release notes for each version are available on GitHub."
+      }
+    },
+    "getting-started": {
+      "meta": {
+        "title": "Getting Started - SETjs Documentation",
+        "description": "Let's start with some basics using what we already have in the build. The non-MVC framework for the internet by State Empire"
+      }
+    },
+    "architecture": {
+      "meta": {
+        "title": "Architecture - SETjs Documentation",
+        "description": "Here’s a description of the main parts. The non-MVC framework for the internet by State Empire"
+      }
+    },
+    "pages": {
+      "meta": {
+        "title": "Pages - SETjs Documentation",
+        "description": "Each page is an object with only one required field comp, which is a function that returns a setjs component created using the getComp function."
+      }
+    },
+    "templates": {
+      "meta": {
+        "title": "Templates - SETjs Documentation",
+        "description": "Templates are pure HTML and allow string interpolation and enhancement via data-* attributes."
+      }
+    },
+    "samples": {
+      "meta": {
+        "title": "Sample projects - SETjs Documentation",
+        "description": "Here's a few projects in the field, using SET v1 and v2."
+      }
+    },
+    "questions": {
+      "meta": {
+        "title": "Got some questions? - SETjs Documentation",
+        "description": "Please get in touch, we love to talk about this, or get in touch with the State Empire crew."
+      }
+    }
+  },
+  "notFound": {
+    "meta": {
+      "title": "Not Found",
+      "description": "The requested page does not exist, let's head <a data-href='/'>back to home</a> and start again."
+    }
+  },
+  "error": {
+    "meta": {
+      "title": "Error",
+      "description": "An error occurred."
+    },
+    "connectionError": "An error occured. Make sure you are connected and try again.",
+    "authError": "You are not authorized to view this page."
+  }
+}

@@ -1,0 +1,126 @@
+# CloudFront for serving the website.
+#
+# The bucket is intended to host the client/static website files.
+# CloudFront will setup the domain to serve files from static (s3) and server (lambda)
+# Retaining Client naming convention in line, but not in file or directory
+  S3As2Client:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub ['${client}-s3-as2-${EnvironmentLookup}-${project}-static', {EnvironmentLookup: !FindInMap [EnvironmentMap, !Ref 'AWS::Region', !Ref environment]}]
+      CorsConfiguration:
+        CorsRules:
+        - AllowedMethods:
+          - GET
+          - POST
+          - HEAD
+          AllowedHeaders:
+          - '*'
+          ExposedHeaders:
+          - 'XMLHttpRequest'
+          AllowedOrigins:
+          - !Join ['', ['https://', !Ref domain]]
+          - !If
+            - EnableSubdomain
+            - !Join ['', ['https://www.', !Ref domain]]
+            - !Ref 'AWS::NoValue'
+      WebsiteConfiguration:
+        IndexDocument: index.html
+      AccessControl: LogDeliveryWrite
+      LoggingConfiguration:
+        DestinationBucketName: !Sub ['${client}-s3-as2-${EnvironmentLookup}-${project}', {EnvironmentLookup: !FindInMap [EnvironmentMap, !Ref 'AWS::Region', !Ref environment]}]
+        LogFilePrefix: logs-s3/
+  S3As2ClientPolicy:
+    Type: AWS::S3::BucketPolicy
+    Properties:
+      Bucket: !Ref S3As2Client
+      PolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+        - Sid: PolicyForCloudFrontPrivateContent
+          Effect: Allow
+          Principal:
+            CanonicalUser: !GetAtt [CfGlobalOriginAccessIdentity, S3CanonicalUserId]
+          Action: s3:GetObject
+          Resource:
+          - !Join ['', [!GetAtt [S3As2Client, Arn], '/www/*']]
+  CfGlobalOriginAccessIdentity:
+    Type: AWS::CloudFront::CloudFrontOriginAccessIdentity
+    Properties:
+      CloudFrontOriginAccessIdentityConfig:
+        Comment: !Sub ['${client}-access-identity-s3-as2-${EnvironmentLookup}-${project}-static', {EnvironmentLookup: !FindInMap [EnvironmentMap, !Ref 'AWS::Region', !Ref environment]}]
+  CfGlobal:
+    Type: AWS::CloudFront::Distribution
+    Properties:
+      DistributionConfig:
+        Aliases:
+        - !Ref domain
+        - !If
+          - EnableSubdomain
+          - !Join ['.', [ 'www', !Ref domain ]]
+          - !Ref 'AWS::NoValue'
+        Comment: !Ref domain
+        Enabled: !Ref CloudFrontEnabled
+        DefaultRootObject: index.html
+        PriceClass: !Ref PriceClass
+        HttpVersion: http2
+        DefaultCacheBehavior:
+          TargetOriginId: !Join ['', [!Select [2, !Split ["/", !GetAtt [S3As2Client, WebsiteURL]]], '/www']]
+          ViewerProtocolPolicy: !Ref ViewerProtocolPolicy
+          AllowedMethods:
+          - HEAD
+          - GET
+          CachedMethods:
+          - HEAD
+          - GET
+          Compress: true
+          # CachePolicyId: 658327ea-f89d-4fab-a63d-7e88639e58f6
+          DefaultTTL: 172800
+          MinTTL: 1
+          MaxTTL: 172800
+          ForwardedValues:
+            Cookies:
+              Forward: none
+            QueryString: true
+            Headers:
+              - x-set-authorization
+              - CloudFront-Viewer-Country
+              - Access-Control-Request-Headers
+              - Access-Control-Request-Method
+              - Origin
+          LambdaFunctionAssociations:
+            - !If
+              - EnableServerEdge
+              - EventType: 'origin-request'
+                LambdaFunctionARN: !Sub ['arn:aws:lambda:us-east-1:${AWS::AccountId}:function:${client}-l-ue1-${EnvironmentLookup}-${project}-server-edge:1', {EnvironmentLookup: !FindInMap [EnvironmentMap, !Ref 'AWS::Region', !Ref environment]}]
+              - !Ref 'AWS::NoValue'
+        Origins:
+        - Id: !Join ['', [!Select [2, !Split ["/", !GetAtt [S3As2Client, WebsiteURL]]], '/www']]
+          DomainName: !GetAtt [S3As2Client, DomainName]
+          OriginPath: /www
+          S3OriginConfig:
+            OriginAccessIdentity: !Join ['', ['origin-access-identity/cloudfront/', !Ref CfGlobalOriginAccessIdentity]]
+        CustomErrorResponses:
+        - ErrorCode: 403
+          ResponsePagePath: '/index.html'
+          ResponseCode: 200
+        - ErrorCode: 404
+          ResponsePagePath: '/index.html'
+          ResponseCode: 404
+        Logging:
+          Bucket: !Sub ['${client}-s3-as2-${EnvironmentLookup}-${project}.s3.amazonaws.com', {EnvironmentLookup: !FindInMap [EnvironmentMap, !Ref 'AWS::Region', !Ref environment]}]
+          Prefix: logs-cf/
+        Restrictions:
+          GeoRestriction:
+            RestrictionType: none
+            Locations: []
+        ViewerCertificate:
+          AcmCertificateArn: !Ref sslcert
+          MinimumProtocolVersion: TLSv1.2_2018
+          SslSupportMethod: sni-only
+      Tags:
+        - Key: client
+          Value: !Ref client
+        - Key: project
+          Value: !Ref project
+        - Key: environment
+          Value: !Ref environment

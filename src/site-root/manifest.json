@@ -1,0 +1,21 @@
+{
+  "short_name": "SETjs",
+  "name": "SETjs",
+  "description":"A pragmatic frontend framework for the Web",
+  "icons": [
+    {
+      "src": "/images/common/pwa-192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "/images/common/pwa-512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ],
+  "start_url": "/?source=pwa",
+  "background_color": "#ffffff",
+  "display": "standalone",
+  "theme_color": "#ffffff"
+}

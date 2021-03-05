@@ -1,0 +1,65 @@
+<main data-template="site/docs/pages" data-id="docs">
+  <section>
+    <div data-slot='{"t": "common/navigation-docs", "replace": "true"}'></div>
+    <div class="content">
+      <h2>Pages</h2>
+      <p>Each page is an object with only one required field <em>comp</em>, which is a function that returns a SetJS component created using the <em>getComp</em> function. The <em>comp</em> function receives the <em>pageData</em> object as its first parameter. Another few optional fields are also used. The default page object can have the following full form (you can always add more fields according to your app’s needs).</p>
+      <pre><code class="code-block js">{
+  templates: [
+    // ...
+  ],
+  role: the_role_flag,
+  getRole: function() {
+    // ...
+  },
+  assets: [
+    // ...
+  ],
+  getAssets: function(route, page) {
+    // ...
+  },
+  handleRoute: function(opts, ...args) {
+    // ...
+  },
+  once: function(opts) {
+    // ...
+  },
+  preload: function(opts) {
+    // ...
+  },
+  loaded: function(opts) {
+    // ...
+  },
+  unload: function(opts) {
+    // ...
+  }
+  comp: function(opts, ...args) {
+    // ...
+  }
+}</code></pre>
+      <h5>templates</h5>
+      <p>A list of template files to load e.g <em>site/home</em>.</p>
+      <h5>role</h5>
+      <p>Specifies whether the page requires a certain access privilege for viewing. The flag creation will typically be done by calling <em>roleFlag()</em> or <em>cascadeRoleFlag()</em> functions defined in <em>setjs/kernel/roles.js</em> module.</p>
+      <h5>getRole</h5>
+      <p>Use a function instead of a fixed role to return the access flag. Otherwise, works similar to the role field.</p>
+      <h5>assets</h5>
+      <p>An array of JS or CSS URL arrays to be loaded by the <em>core/asset-loader.js</em> module</p>
+      <h5>getAssets</h5>
+      <p>Similar to <em>getRole</em>, instead of a fixed <em>assets&lsqb;&rsqb;</em> array, use a function to dynamically decide what assets to load</p>
+      <h5>handleRoute</h5>
+      <p>Return a truthy value if the page wants to handle the route change instead of allowing the page loader to load the route</p>
+      <h5>once</h5>
+      <p>For one-time loading e.g. loading some scripts etc. Must call either <em>opts.success()</em> or <em>opts.error()</em> for page loader to proceed. <em>once</em> will be called again on next visit if you end it with <em>opts.error()</em>.</p>
+      <h5>preload</h5>
+      <p>For preloading. Must call either <em>opts.success()</em> or <em>opts.error()</em> for page loader to proceed.</p>
+      <h5>loaded</h5>
+      <p>Called after the page has loaded.</p>
+      <h5>unload</h5>
+      <p>Called when the page is being unloaded. You can perform any cleanup here.</p>
+      <h5>comp</h5>
+      <p>Create and return a SetJS component to be inserted as the main content of the page.</p>
+      <div class="next"><a data-href="docs/templates">Templates</a></div>
+    </div>
+  </section>
+</main>

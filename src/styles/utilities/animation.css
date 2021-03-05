@@ -1,0 +1,67 @@
+[data-animation] {
+  visibility: hidden;
+  opacity: 0;
+
+  &.animated {
+    visibility: visible;
+    opacity: 1;
+  }
+}
+
+/**
+ * ----------------------------------------
+ * animation fi
+ * ----------------------------------------
+ */
+@keyframes fi {
+  0% {
+    opacity: 0;
+  }
+  100% {
+    opacity: 1;
+  }
+}
+.fi {
+	animation: fi 1.4s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+
+  &-d {
+    animation: fi 1s both;
+    opacity: 0;
+
+    @for $i from 1 to 10 {
+      &.d-$i, &:nth-of-type($i) {
+        animation-delay: calc($i * 0.15s);
+      }
+    }
+  }
+}
+
+/**
+ * ----------------------------------------
+ * animation fib
+ * ----------------------------------------
+ */
+@keyframes fib {
+  0% {
+    transform: translateY(30px);
+    opacity: 0;
+  }
+  100% {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+.fib {
+	animation: fib 1s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
+
+  &-d {
+    animation: fib 1s both;
+    opacity: 0;
+
+    @for $i from 1 to 10 {
+      &.d-$i, &:nth-of-type($i) {
+        animation-delay: calc($i * 0.15s);
+      }
+    }
+  }
+}

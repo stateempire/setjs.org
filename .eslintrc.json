@@ -1,0 +1,33 @@
+{
+   "env": {
+      "browser": true,
+      "es6": true
+   },
+   "parserOptions": {
+     "ecmaVersion": 2018,
+     "sourceType": "module"
+   },
+   "extends": "eslint:recommended",
+   "globals": {
+      "DocumentTouch": true,
+     "$": true,
+     "cloudinary": true,
+     "hljs": true,
+     "Plyr": true,
+     "Vimeo": true,
+     "lottie": true
+   },
+   "rules": {
+      "no-console": "off",
+      "indent": "off",
+      "quotes": [
+         "warn",
+         "single",
+         {"allowTemplateLiterals": true}
+      ],
+      "semi": [
+         "warn",
+         "always"
+      ]
+   }
+}

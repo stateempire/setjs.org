@@ -1,0 +1,63 @@
+footer {
+  aside {
+    @apply fixed right-0;
+    @apply rounded;
+    @apply mx-8;
+    @apply px-6 py-6;
+    @apply z-50;
+
+    top: var(--height-navigation);
+    width: 500px;
+
+    background-color: var(--link-color);
+
+    p,
+    h5,
+    button {
+      color: var(--white);
+    }
+
+    .close {
+      @apply absolute top-0 right-0;
+      @apply my-4 mx-4;
+      @apply cursor-pointer;
+
+      color: var(--white);
+    }
+
+    form {
+      @apply flex;
+      @apply flex-row;
+      @apply justify-between;
+    }
+
+    input {
+      @apply w-full;
+      @apply bg-transparent;
+      @apply border-b border-solid;
+      @apply font-normal;
+      @apply outline-none;
+
+      color: var(--white);
+      border-color: var(--white);
+
+      font-family: var(--font-mono);
+      font-size: 16px;
+
+      &::placeholder {
+        @apply opacity-100;
+
+        color: var(--white);
+      }
+    }
+
+    button {
+      border-color: var(--white);
+
+      &:focus,
+      &:hover {
+        color: var(--white);
+      }
+    }
+  }
+}

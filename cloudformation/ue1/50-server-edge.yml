@@ -1,0 +1,89 @@
+# Lambda@Edge for CloudFront.
+#
+# Creates Lambda function for adding security headers to CloudFront responses.
+# CloudFront config is setup as part of 30-static.yml
+  LUe1ServerEdge:
+    Type: 'AWS::Lambda::Function'
+    Condition: EnableServerEdge
+    Properties:
+      FunctionName: !Sub ['${client}-l-ue1-${EnvironmentLookup}-${project}-server-edge', {EnvironmentLookup: !FindInMap [EnvironmentMap, !Ref 'AWS::Region', !Ref environment]}]
+      Handler: 'index.handler'
+      Runtime: nodejs10.x
+      MemorySize: !Ref LambdaMemory
+      Timeout: !Ref LambdaTimeout
+      Description: Lambda@Edge, security headers for CloudFront.
+      Role:
+        Fn::GetAtt:
+          - 'LUe1ServerEdgeIamRole'
+          - 'Arn'
+      Code:
+        ZipFile: |
+          'use strict';
+          exports.handler = (event, context, callback) => {
+              const request = event.Records[0].cf.request;
+              const headers = request.headers;
+              const authUser = 'se';
+              const authPass = 'se';
+              const authString = 'Basic ' + new Buffer(authUser + ':' + authPass).toString('base64');
+              if (typeof headers.authorization == 'undefined' || headers.authorization[0].value != authString) {
+                  const body = 'Unauthorized';
+                  const response = {
+                      status: '401',
+                      statusDescription: 'Unauthorized',
+                      body: body,
+                      headers: {
+                          'www-authenticate': [{key: 'WWW-Authenticate', value:'Basic'}]
+                      },
+                  };
+                  callback(null, response);
+              }
+              callback(null, request);
+          };
+  LUe1ServerEdgeVersion:
+    Type: 'AWS::Lambda::Version'
+    Condition: EnableServerEdge
+    Properties:
+      FunctionName:
+        Ref: 'LUe1ServerEdge'
+  LUe1ServerEdgeIamRole:
+    Type: 'AWS::IAM::Role'
+    Condition: EnableServerEdge
+    Properties:
+      AssumeRolePolicyDocument:
+        Version: '2012-10-17'
+        Statement:
+          - Action: 'sts:AssumeRole'
+            Principal:
+              Service:
+                - lambda.amazonaws.com
+                - edgelambda.amazonaws.com
+                - replicator.lambda.amazonaws.com
+            Effect: Allow
+      Policies:
+        - PolicyName: EdgePoliciesLambdaPolicy
+          PolicyDocument:
+            Version: '2012-10-17'
+            Statement:
+              - Action:
+                  - 'lambda:GetFunction'
+                  - 'lambda:EnableReplication*'
+                  - 'lambda:InvokeFunction'
+                  - 'logs:CreateLogGroup'
+                  - 'logs:CreateLogStream'
+                  - 'logs:PutLogEvents'
+                  - 's3:*'
+                Effect: Allow
+                Resource: '*'
+Outputs:
+  LAs2ServerEdgeArn:
+    Condition: EnableServerEdge
+    Description: ARN for Server-less Lambda@Edge function
+    Value: !GetAtt [LUe1ServerEdge, Arn]
+    Export:
+      Name: !Sub '${AWS::StackName}-LUe1ServerEdgeArn'
+  LAs2ServerEdgeVersion:
+    Condition: EnableServerEdge
+    Description: Version for Server-less Lambda@Edge function
+    Value: !GetAtt [LUe1ServerEdgeVersion, Version]
+    Export:
+      Name: !Sub '${AWS::StackName}-LUe1ServerEdgeVersion'

@@ -1,0 +1,53 @@
+<main data-template="site/docs/architecture" data-id="docs">
+  <section>
+    <div data-slot='{"t": "common/navigation-docs", "replace": "true"}'></div>
+    <div class="content">
+      <h2>Architecture</h2>
+      <p>Here’s a description of the main parts</p>
+      <h3>HTML/PUG</h3>
+      <p>SetJS keeps HTML separate from code. All components are made using HTML chunks. In the boilerplate, you can use either PUG or HTML. The end result is the same. Just make sure the file names without the <em>.html</em> or <em>.pug</em> extension are unique or files will be overwritten. We do not recommend mixing pug and html. Use only one or the other. By default PUG support is commented out in <em>static/gulpfile.js/tasks/views.js</em>. Make sure you enable it there before using it (you’ll also have to run <em>npm i -D gulp-pug</em> before you can use it).</p>
+      <h3>scripts/main.js</h3>
+      <p>Loads the SPA. The boilerplate comes with everything fully configured to call the start function exported by this module. This in turn prepares and loads all the subsystems and tells the SetJS library to initiate routing and page loading. Generally, you’ll not edit this file.</p>
+      <h3>scripts/app</h3>
+      <p>This is where you’d spent most of your time. It contains all the route setup as well as the actual pages of the application. Typically, you’d have separate folders in this directory for modularity e.g. <em>app/account</em> to deal with auth, <em>app/site</em> for general pages, <em>app/dashboard</em> for dashboard and so on. Each folder will have its own pages, routes, API call setup etc.</p>
+      <h3>scripts/bootstrap</h3>
+      <p>This folder contains the initial bootstrapping of the plugins and components the application will be using. Plugins typically do not require any special calls to bootstrap. You will import the plugins from either <em>setjs</em> (SetJS library) or your own plugin folders. This folder has two files:</p>
+      <ul>
+        <li><em>component-init.js</em> Here you initialize your components like header, footer etc.</li>
+        <li><em>plugin-init.js</em> Here you import plugins from <em>scripts/setjs/plugins</em> (SetJS common plugins) as well as from <em>scripts/plugins</em> (application-specific plugins)</li>
+      </ul>
+      <p>As always, you can add more files to the bootstrapping folder/process.</p>
+      <h3>scripts/components</h3>
+      <p>A place for UI components e.g. footer, nav, sidebars etc. The corresponding HTML should be placed under a similar hierarchy. For example, <em>scripts/components/footer.js</em> will have its corresponding HTML file <em>views/components/footer.html</em>. The boilerplate comes with the correct folder structure for the basic building blocks. You just need to follow the same pattern to keep well-organized.</p>
+      <h3>scripts/config</h3>
+      <p>Provides configuration for other parts of the applications. The pre-existing files enable a well configured system. You can add more files or edit existing ones to suit your needs. The following configuration files are provided by the boilerplate and must always be present in the default setup:</p>
+      <ul>
+        <li><em>app-config.js</em> Exports app-wide configuration. Exports the loader (which provides UI for the page transition process) and a <em>viewUpdate</em> function used by the <em>setjs/kernel/page-loader.js</em> file during the page loading process.</li>
+        <li><em>event-types.js</em> Event types used by the <em>setjs/kernel/event-manager.js</em> event system. SetJS, according to its philosophy of keeping everything simple, comes with a very concise event system. The purpose of events is to decouple unrelated parts. Use events wisely and sparingly only when they make total sense, so as to make code easier to understand and debug. SetJS does not believe in total decoupling and dependency injection like some other SPA frameworks do.</li>
+        <li><em>setup.js</em> Used to make sure non-existing configuration is not used by accident. Also provides the <em>templateUrls</em> function (so that you can load your templates from wherever you want). Application settings are provided to main.js on start-up and are converted into functions by this object. It ensures safety against having a badly configured start-app routine.</li>
+        <li><em>storage-types.js</em> If you want centralized control over certain fields that are stored in localStorage of the browser, you can set them up here for use by the <em>setjs/kernel/storage.js</em> file.</li>
+        <li><em>user-roles.js</em> SetJS comes with a system of user roles for easy management of page access levels. The actual delivery of content and role based restrictions are the responsibility of the API/Backend (as this cannot be done client-side). Make sure you edit this file to match your BE roles.</li>
+      </ul>
+      <h3>scripts/core</h3>
+      <p>Application modules that provide core functionality for other parts of your SPA. Provides a few modules by default. As always, you can add more to suit your SPA needs. These come bundled with the boilerplate:</p>
+      <ul>
+        <li><em>api-helper.js</em> Helper class for a consolidated system of communication with the backend API(s). Exports an <em>api</em> object, so that other parts can expose their API through this single object. This helps simplify how you use your API calls. For examples of good API setups, please check the available demo projects (TODO: links to demo pages).</li>
+        <li><em>app-data.js</em> Initializes application data at start-up. Also creates a <em>defData</em> object, which is used by SetJS to provide global data for the views. By convention, all global properties exposed for views use the `@` prefix, such as `@route` (the page route object), `@lang` (the current language file) and so on.</li>
+        <li><em>asset-loader.js</em> Responsible for loading Template, CSS and JS files requested by the page object through its <em>asset</em> property or <em>getAssets</em> function. You can modify this file to suit your needs (you’d rarely, if ever, need to do that though).</li>
+        <li><em>events.js</em> Basic application events including throttled scroll and resize events. You can comment out the default scroll and resize hooks if not needed.</li>
+        <li><em>keyboard.js</em> Provides some common keyboard hooks. Not an essential module. The defaut boilerplate does not use it. Safe to delete if you do not need it.</li>
+        <li><em>route-manager.js</em> Manages route handling. Also sets up the browser’s <em>beforeunload</em> event, if required. Edit this file to suit your needs.</li>
+        <li><em>setjs-init.js</em> Configures the SetJS environment before it can be started by <em>main.js</em>. Provides all the necessary configuration of <em>setjs/kernel/setjs.js</em> (SetJS library).</li>
+      </ul>
+      <h3>scripts/entities</h3>
+      <p>This is for your applications data entities and their management. All entities are to be initialized by the <em>core/app-data.js</em> module detailed above. Does not have anything by default. Can be deleted if your project does not need it.</p>
+      <h3>scripts/helpers</h3>
+      <p>Your application’s common helpers. Create as many files and folders as you deem fit.</p>
+      <h3>scripts/plugins</h3>
+      <p>Your application plugins. Has four sub-folders by default to match <em>setjs/plugins</em> plugin structure. Feel free to edit any way you like.</p>
+      <h3>scripts/setjs</h3>
+      <p>This is the SetJS library. Provides the backbone for your SPA and has a well configured and thought-out pragmatic setup. Usually, you would not want to edit anything in there, so you can easily update to the latest versions of SetJS as they are released. Generally, if you wanted different behavior from some module in that folder, you’d create a replacement module outside of it in the application space. However, the rule is not written in stone and is totally based on your application needs. Like every other part of SetJS SPA system, pragmatism prevails. The details of <em>setjs</em> will be provided elsewhere. <em>setjs/utility</em> has some very useful utility modules often needed by your application code. It ensures that, in general, you do not need third party utility libraries like lodash etc.</p>
+      <div class="next"><a data-href="docs/pages">Pages</a></div>
+    </div>
+  </section>
+</main>

@@ -1,0 +1,11 @@
+Outputs:
+  S3As2ClientUrl:
+    Description: S3 Website URL
+    Value: !Join ['', [!GetAtt [S3As2Client, WebsiteURL], '/www']]
+    Export:
+      Name: !Sub '${AWS::StackName}-S3As2ClientUrl'
+  CfGlobalUrl:
+    Description: CloudFront Website URL
+    Value: !GetAtt [CfGlobal, DomainName]
+    Export:
+      Name: !Sub '${AWS::StackName}-CfGlobalUrl'

@@ -1,0 +1,18 @@
+<svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 184.8 64.86" style="enable-background:new 0 0 184.8 64.86;" xml:space="preserve">
+  <style type="text/css">
+  	.cl { fill:#0000ff; }
+    .lt { fill:#000000; }
+  </style>
+  <path class="lt" d="M48.86,55.88C37,67.74,17.83,67.86,5.83,56.22L49.2,12.84C60.84,24.85,60.73,44.01,48.86,55.88z"/>
+  <path class="lt" d="M52.04,8.65L8.65,52.03c-11.65-12-11.54-31.18,0.33-43.05C20.85-2.88,40.04-2.99,52.04,8.65z"/>
+
+  <rect class="lt" x="58.32" y="0.99" width="30.94" height="62.88"/>
+  <polygon class="lt" points="120.84,0.99 120.84,31.76 90.36,0.99 "/>
+  <polygon class="lt" points="120.85,33 120.84,63.87 90.36,63.87 "/>
+  <polygon class="lt" points="120.3,32.44 90.1,62.92 90.1,1.94 "/>
+
+  <rect class="lt" x="121.56" y="0.99" width="31.08" height="62.88"/>
+  <polygon class="lt" points="184.25,0.99 184.25,32.43 152.81,0.99 "/>
+
+  <circle class="cl" cx="169" cy="48.8" r="15.79"/>
+</svg>

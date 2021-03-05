@@ -1,0 +1,108 @@
+html,
+body {
+  @apply antialiased;
+
+  color: var(--text);
+
+  font-size: calc(var(--body-size) * 1px);
+  font-family: var(--body, Helvetica, Arial, sans-serif);
+  font-weight: var(--body-weight, 400);
+  line-height: var(--body-height, 1.5);
+
+  @screen sm {
+    font-size: calc((var(--body-size) * 1px) + calc(var(--body-size) / 2) * (100vw - 320px) / 2420);
+  }
+}
+
+p,
+td,
+li:not(.logo) {
+  color: var(--text);
+
+  font-size: calc(var(--body-size) * 1px);
+  font-family: var(--body, Helvetica, Arial, sans-serif);
+  font-weight: var(--body-weight, 400);
+  line-height: var(--body-height, 1.5);
+
+  @screen sm {
+    font-size: calc((var(--body-size) * 1px) + calc(var(--body-size) / 2) * (100vw - 320px) / 2420);
+  }
+}
+
+p {
+  &:not(:last-child) {
+    @apply mb-8;
+  }
+
+  &:empty {
+    @apply hidden;
+  }
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: var(--text);
+
+  font-family: var(--heading, Helvetica, Arial, sans-serif);
+  font-weight: var(--heading-weight, 400);
+
+  letter-spacing: -.2px;
+  line-height: var(--heading-height, 1.27);
+  word-spacing: .2px;
+}
+
+blockquote {
+  font-family: var(--heading, Helvetica, Arial, sans-serif);
+}
+
+h1 {
+  font-size: calc(var(--heading-1) * 1px);
+
+  @screen sm {
+    font-size: calc((var(--heading-1) * 1px) + var(--heading-1) * (100vw - 320px) / 2420);
+  }
+}
+
+h2 {
+  font-size: calc(var(--heading-2) * 1px);
+
+  @screen sm {
+    font-size: calc((var(--heading-2) * 1px) + var(--heading-2) * (100vw - 320px) / 2420);
+  }
+}
+
+h3 {
+  font-size: calc(var(--heading-3) * 1px);
+
+  @screen sm {
+    font-size: calc((var(--heading-3) * 1px) + var(--heading-3) * (100vw - 320px) / 2420);
+  }
+}
+
+h4 {
+  font-size: calc(var(--heading-4) * 1px);
+
+  @screen sm {
+    font-size: calc((var(--heading-4) * 1px) + var(--heading-4) * (100vw - 320px) / 2420);
+  }
+}
+
+h5 {
+  font-size: calc(var(--heading-5) * 1px);
+
+  @screen sm {
+    font-size: calc((var(--heading-5) * 1px) + var(--heading-5) * (100vw - 320px) / 2420);
+  }
+}
+
+h6 {
+  font-size: calc(var(--heading-6) * 1px);
+
+  @screen sm {
+    font-size: calc((var(--heading-6) * 1px) + var(--heading-6) * (100vw - 320px) / 2420);
+  }
+}

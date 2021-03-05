@@ -1,0 +1,204 @@
+/* purgecss start ignore */
+:root {
+  --text: #000;
+  --background: #fff;
+
+  --black: #000;
+  --white: #fff;
+
+  --grey-light: #e6e6e6;
+  --grey-mid: #a9a9a9;
+  --grey-dark: #848587;
+
+  --link-color: #0000ff;
+  --highlight: #EC1E65;
+  --success: #54dd57;
+  --error: #EC1E65;
+
+  --width-max: 1280px;
+  --height-navigation: 120px;
+  --height-input: 72px;
+
+  --font-body: 'neue-haas-grotesk-display';
+  --font-heading: 'neue-haas-grotesk-display';
+  --font-mono: 'Menlo', 'Courier New', monospace;
+
+  --shadow-light: 0 1px 4px 0 rgba(#000, 0.033), 0 5px 10px 0 rgba(#000, 0.044);
+  --shadow-heavy: 0 50px 100px rgba(#000, 0.1), 0 15px 35px rgba(#000, 0.15), 0 5px 15px rgba(#000, 0.1);
+  --shadow-button: 0 4px 10px 8px rgba(#0000ff, 0.088), 0 3px 6px 0 rgba(#0000ff, 0.11);
+  --index: 1002;
+
+  --modal: rgba(#fff, 0);
+  --cursor-background: #efefef;
+  --loading-color: var(--link-color);
+
+  --body: var(--font-body);
+  --body-weight: 500;
+  --body-height: 1.75;
+  --body-size: 14;
+  --heading: var(--font-heading);
+  --heading-weight: 600;
+  --heading-height: 1.5;
+  --heading-1: 64;
+  --heading-2: 30;
+  --heading-3: 20;
+  --heading-4: 18;
+  --heading-5: 16;
+  --heading-6: 15;
+}
+
+body {
+  color: var(--text);
+  background-color: var(--background);
+
+  transition: background-color 0.33s ease-in-out;
+
+  nav,
+  main,
+  footer {
+    transition: opacity 0.33s ease-in-out,
+                background-color 0.33s ease-in-out;
+  }
+
+  nav,
+  main {
+    @apply mx-auto;
+  }
+
+  nav {
+    transition: opacity 0.33s ease-in-out,
+                background-color 0.33s ease-in-out,
+                transform 0.88s ease;
+    will-change: opacity, background-color, transform;
+  }
+
+  main {
+    @apply min-h-screen;
+
+    background-color: var(--background);
+    transition: background-color 0.33s ease-in-out;
+  }
+
+  #main-content {
+    @apply relative;
+    @apply min-h-screen;
+    @apply w-full max-w-full;
+    @apply z-20;
+  }
+
+  footer,
+  .contain {
+    @apply px-6;
+    @apply pt-10;
+
+    @screen md {
+      @apply px-12;
+      @apply pt-12;
+    }
+  }
+
+  figure,
+  section {
+    @apply relative;
+  }
+
+  pre,
+  code {
+    font-family: var(--font-mono);
+  }
+
+  pre {
+    @apply flex;
+    @apply flex-col;
+    @apply whitespace-pre-wrap;
+  }
+
+  address,
+  summary,
+  detail {
+    @apply block;
+    @apply not-italic;
+    @apply list-none;
+  }
+
+  ol,
+  ul {
+
+  }
+
+  a {
+    @apply relative;
+    @apply no-underline;
+
+    color: var(--link-color);
+
+    transition: color 0.33s ease-in-out;
+
+    &:hover {
+      color: var(--text);
+    }
+  }
+
+  button,
+  .button {
+    @apply relative;
+    @apply inline-flex;
+    @apply items-center;
+    @apply justify-center;
+    @apply border border-solid;
+    @apply rounded-full;
+    @apply font-normal;
+    @apply whitespace-no-wrap;
+    @apply py-3 px-8;
+    @apply text-center;
+    @apply outline-none !important;
+    @apply bg-transparent;
+    @apply cursor-pointer;
+    @apply no-underline;
+
+    color: var(--link-color);
+    border-color: var(--link-color);
+
+    font-family: var(--font-mono);
+    font-size: 16px;
+
+    box-shadow: none;
+    transition: color 0.33s ease-in-out,
+                background-color 0.33s ease-in-out,
+                box-shadow 0.33s ease-in-out;
+
+    @screen xm {
+      @apply block;
+      @apply w-full;
+      @apply mx-auto my-2;
+    }
+
+    &.solid {
+      color: var(--white);
+      background-color: var(--link-color);
+      border-color: var(--link-color);
+    }
+
+    &.arrow {
+      @apply uppercase;
+
+      &:after {
+        @apply ml-3;
+
+        content: '\2192';
+        font-family: var(--font-body);
+      }
+    }
+
+    &:focus,
+    &:hover {
+      color: var(--link-color);
+
+      &.solid {
+        color: var(--white);
+        box-shadow: var(--shadow-button);
+      }
+    }
+  }
+}
+/* purgecss end ignore */

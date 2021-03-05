@@ -1,0 +1,218 @@
+$hb-height: 30px;
+$hb-width: 36px;
+$hb-bar: 2px;
+
+.nav {
+  &-opening {
+
+  }
+
+  &-open,
+  &-closing {
+    @apply w-screen h-screen;
+    @apply overflow-hidden;
+
+    nav {
+      @apply w-screen h-screen;
+      @apply overflow-hidden;
+    }
+
+    main {
+      @apply opacity-0;
+    }
+
+    .navigation {
+      @apply pointer-events-auto;
+      @apply z-40;
+
+      transform: translate(0, 0);
+    }
+  }
+
+  &-open {
+    .navigation {
+      @apply opacity-100;
+
+      a {
+        animation-name: fib;
+
+        @for $i from 1 to 6 {
+          &:nth-child($i) {
+            animation-delay: calc($i * 0.11s);
+          }
+        }
+      }
+    }
+
+    button {
+      &:after,
+      &:before {
+        /* background-color: var(--background); */
+      }
+
+      &:before {
+        transform: translateY(calc(($hb-height / 2) - ($hb-bar / 2))) rotateZ(45deg)
+      }
+
+      &:after {
+        transform: translateY(calc((-$hb-height / 2) - (-$hb-bar / 2))) rotateZ(-45deg);
+      }
+    }
+  }
+
+  &-closing {
+    .navigation {
+      @apply opacity-0;
+
+      a {
+        animation-name: fot;
+
+        @for $i from 1 to 6 {
+          &:nth-child($i) {
+            animation-delay: calc($i * 0.055s);
+          }
+        }
+      }
+    }
+  }
+}
+
+nav {
+  @apply fixed;
+  /* @apply absolute; */
+  @apply top-0 left-0;
+  @apply grid grid-flow-row;
+  @apply w-full;
+  @apply overflow-hidden;
+  @apply pointer-events-none;
+  @apply z-50;
+
+  height: var(--height-navigation);
+  grid-template-columns: repeat(24,1fr);
+
+  a,
+  img {
+    @apply pointer-events-auto;
+  }
+
+  ul {
+    @apply flex;
+    @apply w-full;
+    @apply items-center justify-end;
+    @apply px-6;
+    @apply z-50;
+
+    @screen md {
+      @apply px-8;
+    }
+
+    height: var(--height-navigation);
+
+    grid-column-start: 1;
+    grid-column-end: span 24;
+
+    li {
+      &.logo {
+        @apply cursor-pointer;
+        @apply mr-auto;
+        @apply z-50;
+      }
+
+      &.navigation {
+        @apply flex;
+        @apply items-center;
+        @apply py-6 px-6;
+
+        transition: opacity 0.88s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+        will-change: opacity;
+
+        @screen md {
+          @apply ml-auto;
+        }
+
+        @screen xm {
+          @apply fixed top-0 right-0;
+          @apply flex-col;
+          @apply justify-center;
+          @apply min-h-screen h-full;
+          @apply w-full;
+          @apply pointer-events-none;
+          @apply opacity-0;
+
+          background-color: var(--background);
+
+          transform: translate(105%, 0);
+          z-index: -1;
+        }
+      }
+
+      &.mobile {
+        @apply flex;
+        @apply items-center;
+        @apply h-full;
+        @apply cursor-pointer;
+        @apply z-50;
+
+        @screen md {
+          @apply hidden;
+        }
+      }
+    }
+
+    a {
+      @apply relative;
+      @apply mx-4;
+
+      color: var(--text);
+
+      &:before {
+        @apply relative;
+        @apply mr-2;
+
+        top: 2px;
+      }
+    }
+  }
+
+  /* Hamburger */
+  button {
+    @apply block;
+    @apply relative;
+    @apply p-0 m-0;
+    @apply border-none rounded-none;
+    @apply opacity-100;
+
+    height: $hb-bar;
+    width: $hb-width;
+
+    background-color: transparent;
+
+    transition: opacity 0.88s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+    will-change: opacity;
+
+    &:after,
+    &:before {
+      @apply absolute left-0;
+      @apply w-full;
+
+      content: '';
+
+      height: $hb-bar;
+      background-color: var(--text);
+
+      transition: all 0.44s ease;
+    }
+
+    &:before {
+      top: -8px;
+    }
+
+    &:after {
+      top: 8px;
+    }
+  }
+
+  &.scrolling-down {
+    /* transform: translate(0, -100%); */
+  }
+}

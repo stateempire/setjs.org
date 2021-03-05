@@ -516,4 +516,8 @@ bower_components/
 
 
 # End of https://www.gitignore.io/api/vim,git,gwt,node,sass,macos,linux,yeoman,python,drupal8,eclipse,pycharm,windows,netbeans,composer,phpstorm,wordpress,sublimetext
-/_local.yml
+_local.yml
+aws-temp
+app-tmp
+.tmp-vars
+.local-vars

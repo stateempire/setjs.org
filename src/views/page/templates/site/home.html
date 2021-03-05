@@ -1,0 +1,82 @@
+<main data-template="site/home" data-id="home">
+  <header>
+    <figure data-animation="fi"><img data-src="/images/home/header.png" /></figure>
+    <summary class="d-5" data-animation="fib-d">
+      <h1>A pragmatic frontend framework for the Web</h1>
+      <h4>The easiest and fastest way to create your new Web project. Implemented in dozens of websites over the last several years, including projects done for Fortune 500 companies.</h4>
+      <a class="button solid arrow" href="docs">Get Started</a>
+    </summary>
+  </header>
+  <section class="intro">
+    <div class="header">
+      <h2>Our pragmatic-first approach to a new framework</h2>
+      <p>SetJS has been our main recipe for building SPAs and JS heavy web projects for more than 6 years. Before we created SetJS, we used React.js in a few small and medium size projects. However, we realised the heavy abstractions, which might work for really large scale projects, were more of a burden than a boon for our small team.</p>
+      <p>SetJS did not reach its current form immediately though, it took us years to perfect it to our needs. We decided on major principles, then refined our code to better achieve those principles over time.</p>
+      <h5>Why another framework?</h5>
+    </div>
+    <div class="content">
+      <div class="item">
+        <h6>Minimal learning curve</h6>
+        <p>Onboarding new developers is hard. We did not want anything that requires months of training. Also, if for some reason we decided to migrate to a new framework, the existing skills would be lost.</p>
+      </div>
+      <div class="item">
+        <h6>Stability</h6>
+        <p>We hated how fast the framework world changed. Old being replaced by new so fast you lose track of what is in fashion today. We wanted a stable solution that does not require constant updating.</p>
+      </div>
+      <div class="item">
+        <h6>Real world battle-tested</h6>
+        <p>SetJS has been production ready for many years now. It worked so well for our small team that we decided to share it with the world.</p>
+      </div>
+      <div class="item">
+        <h6>Simplicity</h6>
+        <p>Simplicity and a thinner layer of abstractions than has become the norm. We found no reason why the frameworks were becoming so abstract. Abstractions have their place, but too many do more harm than good, especially for smaller projects.</p>
+      </div>
+    </div>
+  </section>
+  <section class="deployed">
+    <div class="header">
+        <h5>Already deployed in some brands you may know, some new.</h5>
+        <p>We wanted to make sure we got this right, so we've tested across some of the largest and some smaller companies we could think of so you don't have to.</p>
+    </div>
+    <div class="content"><img data-src="/images/logos/jackywinter.svg" width="50" alt="Jacky Winter" /><img data-src="/images/logos/nissan.svg" width="100" alt="Nissan Japan" /><img data-src="/images/logos/singaporeairlines.svg" width="100" alt="Singapore Airlines" /><img data-src="/images/logos/tac.svg" width="70" alt="TAC - Australia" /><img data-src="/images/logos/openhours.svg" width="60" alt="Open Hours - Sell Anything" /><img data-src="/images/logos/tbwa.svg" width="65" alt="TBWA - Melbourne" /></div>
+  </section>
+  <section class="example">
+    <div class="header">
+      <h5>Enough already, play the hits!</h5>
+      <h2>The classic TODO list</h2>
+      <p>Let's take a look at the TODO list, a real world example that answers the age old question: what do I need and what do I have.</p>
+    </div>
+    <div class="content">
+      <div class="consoles">
+        <h6>HTML Template</h6>
+        <pre><code class="code-block html" data-name="todoHtml"></code></pre>
+        <h6>JavaScript</h6>
+        <pre><code class="code-block js">@@include('scripts/app/site/examples/todo.js')</code></pre>
+      </div>
+      <div class="result">
+        <h6>Result - Todo List</h6>
+        <div class="console" data-name="todo"></div>
+      </div>
+    </div>
+  </section>
+  <section class="who">
+    <div class="header">
+      <h3>Developed by the team at State Empire as an experiment in frustration.</h3>
+      <h3>State Empire is an independent design and development studio in Melbourne Australia</h3>
+    </div>
+    <div class="content"><a class="button solid arrow" href="https://stateempire.com/contact">Contact us</a></div>
+  </section>
+</main>
+
+<div class="todo" data-template="site/todo">
+  <ol data-name="todoList" data-list='{"prop": "todoList", "sub": "<li>Congrats! Your To Do list is empty.</li>", "vars": {"v": "todo"}}'>
+    <li>
+      {todo}
+      <button data-act="click" data-func="removeItem">-</button>
+    </li>
+  </ol>
+  <form data-act="submit" data-func="addItem">
+    <input data-name="input" type="text" required="required" maxlength="64" placeholder="Add a new todo ..." />
+    <button>+</button>
+  </form>
+</div>

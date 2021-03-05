@@ -1,9 +1,0 @@
-main(data-template='common/error', data-id='error')
-  header
-    .grid-container
-      .grid-x.grid-margin-x.grid-padding-x
-        .small-12.medium-12.cell.text-center
-          .absolute-center
-            h1 #[span(data-bind='error_code:not|toggleClass,hidden') {error_code} ] #[span(data-bind='@lang.error.meta.title')]
-            h2(data-bind='@lang.error.{errName}')
-            h3 {o:msg}

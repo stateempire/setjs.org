@@ -1,0 +1,262 @@
+#docs {
+  main {
+    @apply grid;
+    @apply grid-cols-24;
+  }
+
+  section {
+    @apply flex;
+    @apply col-span-22;
+    @apply col-start-2;
+    @apply flex-col;
+
+    margin-top: calc(var(--height-navigation) * 1.5);
+
+    @screen md {
+      @apply flex-row;
+    }
+
+    @screen lg {
+      @apply col-span-18;
+      @apply col-start-4;
+    }
+
+    h2,
+    h3,
+    h4,
+    h5 {
+      @apply mb-4;
+    }
+
+    h3,
+    h4 {
+      @apply mt-8;
+    }
+
+    aside {
+      @apply w-full;
+      @apply mb-12;
+
+      @screen md {
+        @apply pr-4;
+        @apply flex-shrink-0;
+        @apply pr-8;
+
+        width: 200px;
+      }
+
+      @screen lg {
+        width: 280px;
+      }
+
+      a {
+        @apply block;
+        @apply opacity-50;
+        @apply py-1;
+
+        color: var(--text);
+
+        &.active {
+          @apply font-semibold;
+          @apply opacity-100;
+        }
+      }
+    }
+
+    .content {
+      @apply flex;
+      @apply flex-col;
+      @apply w-full;
+      @apply ml-auto;
+      @apply pb-20;
+
+      @screen md {
+        @apply pr-8;
+
+        width: calc(100% - 200px);
+      }
+
+      @screen lg {
+        width: calc(100% - 280px);
+      }
+    }
+
+    ol,
+    ul {
+      @apply list-none;
+      @apply pl-6;
+      @apply mb-4;
+
+      li {
+        @apply relative;
+        @apply mb-4;
+      }
+    }
+
+    ul {
+      li {
+        &:before {
+          @apply inline-block;
+          @apply opacity-25;
+
+          content: '-';
+          margin-left: -15px;
+          margin-right: 9px;
+        }
+      }
+    }
+
+    ol {
+      counter-reset: section;
+
+      li {
+        &:before {
+          @apply inline-block;
+          @apply opacity-50;
+
+          counter-increment: section;
+          content: counter(section) ".";
+
+          font-family: var(--font-mono);
+          font-size: 14px;
+
+          margin-left: -25px;
+          margin-right: 8px;
+        }
+      }
+    }
+
+    .emoji {
+      font-size: 32px;
+    }
+
+    .list {
+      @apply grid;
+      @apply grid-cols-1;
+      @apply gap-6;
+
+      @screen md {
+        @apply grid-cols-2;
+      }
+
+      .item {
+        @apply border border-solid;
+        @apply rounded-sm;
+        @apply px-6 py-10;
+
+        border-color: var(--grey-light);
+        background-color: var(--background);
+
+        img {
+          @apply mb-6;
+
+          height: 45px;
+        }
+
+        .button {
+          @apply py-2 px-5;
+          @apply font-medium;
+
+          font-size: 14px;
+        }
+      }
+    }
+
+    /* pre {
+      @apply whitespace-pre;
+      @apply border border-solid;
+      @apply rounded-sm;
+      @apply mb-10;
+      @apply px-6 py-10;
+      @apply overflow-scroll;
+
+      border-color: var(--grey-light);
+      background-color: var(--background);
+
+      counter-reset: section;
+
+      code {
+        @apply relative;
+        @apply block;
+        @apply py-0 pl-10;
+        @apply whitespace-pre;
+
+        min-height: 26px;
+
+        color: var(--text);
+        background-color: transparent;
+
+        font-size: 15px;
+
+        &:after,
+        &:before {
+          @apply hidden;
+        }
+
+        &:before {
+          @apply block;
+          @apply vertical-center left-0;
+          @apply opacity-25;
+
+          counter-increment: section;
+          content: counter(section);
+
+          font-size: 14px;
+        }
+
+        em {
+          @apply not-italic;
+          @apply whitespace-no-wrap;
+
+          color: var(--grey-mid);
+        }
+
+        span {
+          @apply py-1;
+          @apply rounded-sm;
+
+          background-color: #fff5c8;
+        }
+      }
+    } */
+
+    em {
+      @apply whitespace-pre-wrap;
+      @apply not-italic;
+      @apply font-medium;
+      @apply rounded-sm;
+      @apply py-1;
+
+      color: var(--highlight);
+      background-color: #fbf7f8;
+
+      font-size: 14px;
+      font-family: var(--font-mono);
+
+      @screen md {
+        font-size: 16px;
+      }
+
+      &:after,
+      &:before {
+        content: '`';
+      }
+    }
+
+    .next {
+      @apply flex;
+      @apply justify-end;
+      @apply font-semibold;
+      @apply py-12;
+
+      a {
+        &:after {
+          @apply ml-2;
+
+          content: '→';
+          color: var(--text);
+        }
+      }
+    }
+  }
+}

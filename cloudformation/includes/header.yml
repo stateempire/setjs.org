@@ -1,0 +1,112 @@
+AWSTemplateFormatVersion: '2010-09-09'
+Description: AWS artifacts created through Cloudformation
+Parameters:
+  client:
+    Type: String
+    Default: se
+    Description: Enter the client the resources belong to (i.e. stateempire, etc).
+  project:
+    Type: String
+    Default: test
+    Description: Enter the project the resources belong to (i.e. test, etc).
+  environment:
+    Type: String
+    Default: testing
+    AllowedValues:
+      - production
+      - staging
+      - development
+      - testing
+    Description: Enter the environment the resources belong to (i.e. staging, production, development, testing).
+  domain:
+    Type: String
+    Default: temp.stateempire.com
+    Description: Enter the fully qualified domain name (e.g. test.stateempire.com)
+  sslcert:
+    Type: String
+    Default: notavailable
+    Description: Enter the fully qualified AWS AcmCertificateArn
+  subdomain:
+    Type: String
+    Default: true
+    AllowedValues: [true, false]
+    Description: Whether or not to append a 'www' to the full domain.
+  serverEdge:
+    Type: String
+    Default: false
+    AllowedValues: [true, false]
+    Description: Whether Lambda@Edge is enabled or not. Provides security headers by default.
+  CloudFrontEnabled:
+    Type: String
+    Description: Status of CloudFront distribution whether to be enabled or disabled after provisioning
+    Default: true
+    AllowedValues:
+    - true
+    - false
+  ViewerProtocolPolicy:
+    Description: The protocol that users can use to access the files in the origin that you specified in the TargetOriginId property when the default cache behavior is applied to a request.
+    Type:  String
+    Default: redirect-to-https
+    AllowedValues:
+    - redirect-to-https
+    - allow-all
+    - https-only
+  OriginProtocolPolicy:
+    Description: CloudFront Origin Protocol Policy to apply to your origin.
+    Type: String
+    Default: https-only
+    AllowedValues:
+    - http-only
+    - match-viewer
+    - https-only
+  Compress:
+    Description: CloudFront Origin Protocol Policy to apply to your origin.
+    Type: String
+    Default: true
+    AllowedValues:
+      - true
+      - false
+  PriceClass:
+    Type: String
+    Description: The CloudFront distribution price class
+    Default: PriceClass_200
+    AllowedValues:
+      - PriceClass_100
+      - PriceClass_200
+      - PriceClass_All
+  LambdaMemory:
+    Type: Number
+    Description: Specify Lambda memory in MB. Minimum memory is 128MB and maximum memory can be assigned to Lambda is 3000MB.
+    Default: 128
+    MinValue: 128
+    MaxValue: 3000
+  LambdaTimeout:
+    Type: Number
+    Description: Specify timeout duration in seconds for Lambda function.
+    Default: 5
+    MinValue: 1
+    MaxValue: 10
+  SecretName:
+    Description: Valid name of the secret
+    Type: String
+    Default: rds-credentials
+  SecretKey:
+    Description: Valid name of secret key which stores the actual credentials
+    Type: String
+    Default: password
+Conditions:
+  EnableServerEdge: !Equals [true, !Ref serverEdge]
+  EnableSubdomain: !Equals [true, !Ref subdomain]
+Mappings:
+  EnvironmentMap:
+    us-east-1:
+      production: "prod"
+      staging: "stag"
+      testing: "test"
+      development: "dev"
+    ap-southeast-2:
+      production: "prod"
+      staging: "stag"
+      testing: "test"
+      development: "dev"
+Resources:

@@ -1,0 +1,11 @@
+/***
+ Settings
+ --------
+
+ Moved to CSS vars under layout/base.css
+
+ If a project or client needs IE11 support, we'll need to
+ move all CSS vars back to Tailwind variables, switch out the
+ var(--*) for $*
+
+***/

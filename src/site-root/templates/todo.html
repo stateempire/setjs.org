@@ -1,0 +1,12 @@
+<div class="todo" data-template="site/todo">
+  <ol data-name="todoList" data-list='{"prop": "todoList", "sub": "<li>Congrats! Your To Do list is empty.</li>", "vars": {"v": "todo"}}'>
+    <li>
+      {todo}
+      <button data-act="click" data-func="removeItem">-</button>
+    </li>
+  </ol>
+  <form data-act="submit" data-func="addItem">
+    <input data-name="input" type="text" required="required" maxlength="64" placeholder="Add a new todo ..." />
+    <button>+</button>
+  </form>
+</div>

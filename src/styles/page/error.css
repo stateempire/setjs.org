@@ -1,0 +1,65 @@
+#error {
+  @apply h-screen;
+
+  background-color: var(--background);
+
+  nav,
+  footer {
+    @apply hidden;
+  }
+
+  header {
+    @apply flex;
+    @apply flex-col;
+    @apply w-screen h-screen;
+    @apply items-center justify-center;
+  }
+
+  summary {
+    @apply text-left;
+    @apply w-8o12;
+
+    max-width: 404px;
+  }
+
+  a,
+  p,
+  h2,
+  h3,
+  h4 {
+    color: var(--error);
+    font-family: var(--font-body);
+
+    transition: all 0s;
+  }
+
+  h3 {
+    @apply relative;
+
+    &:before {
+      @apply absolute top-0;
+
+      left: -30px;
+
+      @screen sm {
+        left: -50px;
+      }
+    }
+
+    &.shrug {
+      &:before {
+        content: '🤷‍♀️';
+      }
+    }
+
+    &.error {
+      &:before {
+        content: '💣';
+      }
+    }
+  }
+
+  a {
+    @apply underline;
+  }
+}

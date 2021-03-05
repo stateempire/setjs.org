@@ -1,0 +1,17 @@
+# S3 bucket for logs, lambda packages and other stack config.
+#
+# This bucket is needed for aws cloudformation deploy, and is also used for
+# logs and other non-public assets.
+# It is not used for serving files.
+Resources:
+  S3As2Stack:
+    Type: AWS::S3::Bucket
+    Properties:
+      BucketName: !Sub ['${client}-s3-as2-${EnvironmentLookup}-${project}', {EnvironmentLookup: !FindInMap [EnvironmentMap, !Ref 'AWS::Region', !Ref environment]}]
+      AccessControl: LogDeliveryWrite
+Outputs:
+  S3As2Stack:
+    Description: S3 Bucket
+    Value: !GetAtt [S3As2Stack, DomainName]
+    Export:
+      Name: !Sub '${AWS::StackName}-S3As2Stack'

@@ -1,6 +1,6 @@
 name: setjs-org
 client: stateempire
-project: setjs-org
+project: set
 version: 0.0.1
 email: help@stateempire.com
 local:
@@ -11,25 +11,14 @@ development:
   environment: development
   domain: dev.setjs.org
   subdomain: false
-  sslcert: arn:aws:acm:us-east-1:423611532717:certificate/1e8490fd-31f9-4997-b659-1db9569c2482
+  sslcert: arn:aws:acm:us-east-1:423611532717:certificate/cf0a261a-91f5-4131-b937-689af2de4ac9
   cache_control_max_age: 360
-  dns: false
-  server: false
   server_edge: false
-  health_check: false
-  ddb: false
-  waf: false
-  vpc: false
 master:
   environment: production
   domain: setjs.org
-  subdomain: false
-  sslcert: arn:aws:acm:us-east-1:423611532717:certificate/4d08689a-441c-4ebd-b809-fb1241d2d2dd
+  subdomain: true
+  sslcert: arn:aws:acm:us-east-1:423611532717:certificate/cf0a261a-91f5-4131-b937-689af2de4ac9
   cache_control_max_age: 2592000
-  dns: false
-  server: false
   server_edge: false
-  health_check: false
-  ddb: false
-  waf: false
-  vpc: false
+  distribution_id:
