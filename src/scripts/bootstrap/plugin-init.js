@@ -10,7 +10,7 @@ jqFuncs(['accordion', 'forceNumber', 'instagram', 'marquee', 'rollingCopy', 'sel
 // import 'setjs/plugins/jquery/lightbox.js';
 
 import 'setjs/plugins/misc/animate-visible.js';
-// import 'setjs/plugins/misc/dropdown-menu.js';
+import 'setjs/plugins/misc/dropdown-menu.js';
 
 // import 'setjs/plugins/template-actions/gdpr.js';
 
