@@ -5,9 +5,9 @@
       <h2>Architecture</h2>
       <p>Here’s a description of the main parts</p>
       <h3>HTML/PUG</h3>
-      <p>SetJS keeps HTML separate from code. All components are made using HTML chunks. In the boilerplate, you can use either PUG or HTML. The end result is the same. Just make sure the file names without the <em>.html</em> or <em>.pug</em> extension are unique or files will be overwritten. We do not recommend mixing pug and html. Use only one or the other. By default PUG support is commented out in <em>static/gulpfile.js/tasks/views.js</em>. Make sure you enable it there before using it (you’ll also have to run <em>npm i -D gulp-pug</em> before you can use it).</p>
+      <p>SetJS keeps HTML separate from code. All components are made using HTML chunks. You can use either PUG or HTML (recommended). The end result is the same. Just make sure the file names without the <em>.html</em> or <em>.pug</em> extension are unique or files will be overwritten. We do not recommend mixing pug and html. Use only one or the other. By default PUG support is commented out in <em>static/gulpfile.js/tasks/views.js</em>. Make sure you enable it there before using it (you’ll also have to run <em>npm i -D gulp-pug</em> before you can use it).</p>
       <h3>scripts/main.js</h3>
-      <p>Loads the SPA. The boilerplate comes with everything fully configured to call the start function exported by this module. This in turn prepares and loads all the subsystems and tells the SetJS library to initiate routing and page loading. Generally, you’ll not edit this file.</p>
+      <p>Loads the SPA. The starters come with everything fully configured to call the start function exported by this module. This in turn prepares and loads all the subsystems and tells the SetJS library to initiate routing and page loading. Generally, you’ll not edit this file.</p>
       <h3>scripts/app</h3>
       <p>This is where you’d spent most of your time. It contains all the routing setup as well as the actual pages of the application. Typically, you’d have separate folders in this directory for modularity e.g. <em>app/account</em> to deal with auth, <em>app/site</em> for general pages, <em>app/dashboard</em> for dashboard and so on. Each folder will have its own pages, routes, API call setup etc.</p>
       <h3>scripts/bootstrap</h3>

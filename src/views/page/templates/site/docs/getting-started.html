@@ -3,11 +3,15 @@
     <div data-slot='{"t": "common/navigation-docs", "replace": "true"}'></div>
     <div class="content">
       <h2>Getting Started</h2>
-      <p>So, we have things installed ...</p>
+      <p>So, we have things installed. Now is the time to understand pages and how we can add one.</p>
+      <h3>The page concept</h3>
+      <p>The main power of SetJS comes from its focus on pages rather than components which is the norm these days. This is one of the greatest differences between major frameworks and SetJS.</p>
+      <p>A page is associated with one or more routes. Each page in SetJS has a template and typically an associated JS file (optional). </p>
+      <p>A template file contains one or more elements with an attribute called “data-template” present. This becomes their identity name. The name can be anything, but a typical application uses the folder structure.</p>
       <h3>Adding a new page</h3>
       <p>Let's start with some basics using what we already have in the build.</p>
       <ul>
-        <li>Create a new HTML or PUG file under <em>demo/src/views/page/templates/site</em>. To test things out copy <em>demo/src/views/page/templates/site/home.html</em> as a new file <em>test.html</em>.</li>
+        <li>Create a new HTML file under <em>src/views/page/templates/site</em>. To test things out copy <em>src/views/page/templates/site/home.html</em> as a new file <em>test.html</em>.</li>
         <li>Open that file and change the highlighted snippet below</li>
       </ul>
       <pre>
@@ -16,15 +20,15 @@
       </pre>
       <pre>
         <h6>To</h6>
-        <code class="code-block html">main(data-template='site/test' data-id='home')</code>
+        <code class="code-block html">main(data-template='site/test' data-id='test')</code>
       </pre>
       <ul>
-        <li>Make a copy of <em>demo/src/scripts/app/site/pages/home.js</em> as <em>test.js</em> in the same folder.</li>
+        <li>Make a copy of <em>src/scripts/app/site/pages/home.js</em> as <em>test.js</em> in the same folder.</li>
         <li>Open the file and replace the highlighted snippets</li>
       </ul>
       <pre>
         <h6>From</h6>
-        <code class="code-block js">// demo/src/scripts/app/site/pages/home.js
+        <code class="code-block js">// src/scripts/app/site/pages/home.js
 
 export default {
   templates: ['<span>site/home</span>'],
@@ -35,7 +39,7 @@ export default {
       </pre>
       <pre>
         <h6>To</h6>
-        <code class="code-block js">// demo/src/scripts/app/site/pages/test.js
+        <code class="code-block js">// src/scripts/app/site/pages/test.js
 
 export default {
   templates: ['<span>site/test</span>'],
@@ -45,9 +49,9 @@ export default {
 };</code>
       </pre>
         <ul>
-          <li>Open <em>demo/src/scripts/app/site/init.js</em> and import the default export as test and add this line as the route handler, <em>addPage('', test);</em>, illustrated below with the comments alongside.</li>
+          <li>Open <em>src/scripts/app/site/init.js</em> and import the default export as test and add this line as the route handler, <em>addPage('', test);</em>, illustrated below with the comments alongside.</li>
         </ul>
-      <pre><code class="code-block js">// demo/src/scripts/app/site/init.js
+      <pre><code class="code-block js">// src/scripts/app/site/init.js
 
 import {addPage, addPaths} from 'setbp/kernel/page-manager.js';
 
@@ -58,20 +62,7 @@ import test from './pages/test.js';    // Added line
 
 export default function() {
   addPage('', home);
-  addPage('', test);                   // Added line</code></pre>
-      <h3>What we did</h3>
-      <p>We created a new page associated with a route. Each page in SetJS has a template and typically an associated JS file (optional). The main power of SetJS comes from its focus on pages rather than components which is the norm these days. This is one of the greatest differences between major frameworks and SetJS.</p>
-      <p>A template file contains one or more elements with an attribute called “data-template” present. This becomes their identity name. The name can be anything, but a typical application uses the folder structure.</p>
-      <h3>Example pages</h3>
-      <ul>
-        <li>The “home page” is a skeleton page with no complex JS</li>
-        <li><em>http://localhost:63001/es/todo</em> is a sample TO DO app. We created this as a comparison to <a target="_blank" href="https://sunilsandhu.com/posts/i-created-the-exact-same-app-in-react-and-vue-2020-edition">sunilsandhu.com/posts/i-created-the-exact-same-app-in-react-and-vue-2020-edition</a>. Notice the simplicity of our system!</li>
-        <li><em>http://localhost:63001/en/list-test</em> is a demonstration of how lists are rendered.</li>
-      </ul>
-      <h6>API based pages</h6>
-      <ul>
-        <li><a target="_blank" href="http://set-demo.nonaf.com/en/people">set-demo.nonaf.com/en/people</a> (Note: Broken link] provides examples of API based pages. These pages pull some fake data from <a target="_blank" href="https://jsonplaceholder.typicode.com">jsonplaceholder.typicode.com</a> and show it in a couple of pages.</li>
-      </ul>
+  addPage('test', test);                   // Added line</code></pre>
       <div class="next"><a data-href="docs/architecture">Architecture</a></div>
     </div>
   </section>

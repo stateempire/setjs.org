@@ -25,10 +25,9 @@ var comp = getComp(‘template_name’, compData);</code></pre>
     <h3>data-href</h3>
     <p>Used for internal links of the SPA. SetJS will create the <em>href</em> attribute and prevent reloading of the application. On click, the new page will be opened</p>
 
-    <h3>data-template</h3>
-
-    <h3>data-bind</h3>
-    <p>Used to provide a simple way to dynamically control the UI (including content rendering). Let’s suppose you pass the following data to a component (2nd argument to the getComp call):</p>
+    <h3>data-bind & data-watch</h3>
+    <p>Used to provide a simple way to dynamically control the UI (including content rendering). <em>data-watch</em> is used on existing properties and runs the binding automatically when the field is changed. It uses Object.defineProperty() to start observing changes. <em>data-watch</em> should be used only where it makes absolute sense to automatically update UI based on data changes. Most of the times you should use data-bind. SetJS does not encourage gloabl use of this behavior as common in other frameworks.</p>
+    <p>Let’s suppose you pass the following data to a component (2nd argument to the getComp call):</p>
     <pre><code class="code-block js">var compData = {amount: 10, user: {name: "some name"}};
 var comp  = getComp(template_name, compData);
 
@@ -46,7 +45,7 @@ var comp  = getComp(template_name, compData);
     <h5>Pipe ( | )</h5>
     <p>You can create a series of function calls to work on a value using the <em>|</em> character. E.g:</p>
     <pre><code class="code-block html">&lt;span data-bind="person.type|isAdmin|toggle"&gt;&lt;/span&gt;</code></pre>
-    <p>The value of <em>person.type</em> is first passed to a jQuery function <em>isAdmin</em> and the result is then passed to another jQuery function, <em>toggle</em></p>
+    <p>The value of <em>person.type</em> is first passed to a function <em>isAdmin</em> (defined in the component data or as a global function) and the result is then passed to another jQuery function, <em>toggle</em></p>
 
     <h5>Comma ( , )</h5>
     <p>You can pass parameters to the functions using comma as a separator. E.g:</p>
@@ -62,22 +61,19 @@ var comp  = getComp(template_name, compData);
     <h5>Tilde ( ~ )</h5>
     <p>Prefix a property path with <em>~</em> so that it is evaluated each time the binding is performed i.e. initially as well as when you call the component’s update method.</p>
 
-    <h3>data-arg</h3>
-    <p>Used by <em>data-arg</em>, detailed below</p>
-
-    <h3>data-func:</h3>
-    <p>Used by <em>data-act</em>, detailed below</p>
+    <h3>data-func & data-arg</h3>
+    <p>Used by <em>data-act</em>, detailed next</p>
 
     <h3>data-act:</h3>
-    <p>Use to bind events. Can be accompanied by data-func to specify the name of the function that is to be called when the event is raised. If data-func is not provided, SetJS will try to call a function with the same name as the event. A few abbreviations are provided by default:</p>
+    <p>Used to bind events. Can be accompanied by data-func to specify the name of the function that is to be called when the event is raised. If data-func is not provided, SetJS will try to call a function with the same name as the event. A few abbreviations are provided by default:</p>
     <ul>
       <li>down = mousedown touchstart</li>
       <li>up = mouseup touchend</li>
       <li>out = mouseleave touchleave touchcancel</li>
       <li>move = mousemove touchmove</li>
-      <li>form = submit</li>
+      <li>form = submit *</li>
     </ul>
-    <p>The last one enables special handling of the "submit" event via the handleEvent function of your application in <em>src/scripts/core/setjs-init.js</em>.</p>
+    <p>* <em>form</em> enables special handling of the "submit" event via the handleEvent function of your application in <em>src/scripts/core/setjs-init.js</em>.</p>
 
     <h3>data-if, data-elif and data-else</h3>
     <p>One time conditional rendering of content. Only evaluated when the component is created. The respective DOM element is either kept or removed based on the result. The first two (data-if, data-elif) expect similar syntax as data-bind. The statement separator (the semicolon) works as AND and the binding separator (the colon) works as OR. It is recommended to not let these conditions become too complex for better readability. If a complex condition is needed, you can move it to the code as function call and call that function from these attributes. Remember that setjs tries to keep templates simple. Any complex logic should be handled in code.</p>
