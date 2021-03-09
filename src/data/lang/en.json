@@ -1,8 +1,8 @@
 {
   "home": {
     "meta": {
-      "title": "SETjs - The non-MVC framework for the internet by State Empire",
-      "description": "The easiest and fastest way to create your new internet project – this is not a new experiment, implemented in dozens of Fortune 500 companies and smaller."
+      "title": "SETjs - A pragmatic frontend framework for the Web",
+      "description": "The easiest and fastest way to create your new Web project. Implemented in dozens of websites over the last several years, from Fortune 500 companies to blogs about cereal."
     }
   },
   "docs": {
@@ -19,13 +19,13 @@
     "getting-started": {
       "meta": {
         "title": "Getting Started - SETjs Documentation",
-        "description": "Let's start with some basics using what we already have in the build. The non-MVC framework for the internet by State Empire"
+        "description": "Let's start with some basics using what we already have in the build. A pragmatic frontend framework for the Web"
       }
     },
     "architecture": {
       "meta": {
         "title": "Architecture - SETjs Documentation",
-        "description": "Here’s a description of the main parts. The non-MVC framework for the internet by State Empire"
+        "description": "Here’s a description of the main parts. A pragmatic frontend framework for the Web"
       }
     },
     "pages": {

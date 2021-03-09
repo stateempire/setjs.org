@@ -10,7 +10,7 @@ body {
   line-height: var(--body-height, 1.5);
 
   @screen sm {
-    font-size: calc((var(--body-size) * 1px) + calc(var(--body-size) / 2) * (100vw - 320px) / 2420);
+    font-size: calc((var(--body-size) * 1px) + calc(var(--body-size) / 2) * (100vw - 320px) / 1820);
   }
 }
 
@@ -25,7 +25,7 @@ li:not(.logo) {
   line-height: var(--body-height, 1.5);
 
   @screen sm {
-    font-size: calc((var(--body-size) * 1px) + calc(var(--body-size) / 2) * (100vw - 320px) / 2420);
+    font-size: calc((var(--body-size) * 1px) + calc(var(--body-size) / 2) * (100vw - 320px) / 1820);
   }
 }
 
@@ -63,7 +63,7 @@ h1 {
   font-size: calc(var(--heading-1) * 1px);
 
   @screen sm {
-    font-size: calc((var(--heading-1) * 1px) + var(--heading-1) * (100vw - 320px) / 2420);
+    font-size: calc((var(--heading-1) * 1px) + var(--heading-1) * (100vw - 320px) / 1820);
   }
 }
 
@@ -71,7 +71,7 @@ h2 {
   font-size: calc(var(--heading-2) * 1px);
 
   @screen sm {
-    font-size: calc((var(--heading-2) * 1px) + var(--heading-2) * (100vw - 320px) / 2420);
+    font-size: calc((var(--heading-2) * 1px) + var(--heading-2) * (100vw - 320px) / 1820);
   }
 }
 
@@ -79,7 +79,7 @@ h3 {
   font-size: calc(var(--heading-3) * 1px);
 
   @screen sm {
-    font-size: calc((var(--heading-3) * 1px) + var(--heading-3) * (100vw - 320px) / 2420);
+    font-size: calc((var(--heading-3) * 1px) + var(--heading-3) * (100vw - 320px) / 1820);
   }
 }
 
@@ -87,7 +87,7 @@ h4 {
   font-size: calc(var(--heading-4) * 1px);
 
   @screen sm {
-    font-size: calc((var(--heading-4) * 1px) + var(--heading-4) * (100vw - 320px) / 2420);
+    font-size: calc((var(--heading-4) * 1px) + var(--heading-4) * (100vw - 320px) / 1820);
   }
 }
 
@@ -95,7 +95,7 @@ h5 {
   font-size: calc(var(--heading-5) * 1px);
 
   @screen sm {
-    font-size: calc((var(--heading-5) * 1px) + var(--heading-5) * (100vw - 320px) / 2420);
+    font-size: calc((var(--heading-5) * 1px) + var(--heading-5) * (100vw - 320px) / 1820);
   }
 }
 
@@ -103,6 +103,6 @@ h6 {
   font-size: calc(var(--heading-6) * 1px);
 
   @screen sm {
-    font-size: calc((var(--heading-6) * 1px) + var(--heading-6) * (100vw - 320px) / 2420);
+    font-size: calc((var(--heading-6) * 1px) + var(--heading-6) * (100vw - 320px) / 1820);
   }
 }

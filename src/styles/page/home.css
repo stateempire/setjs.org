@@ -91,35 +91,19 @@
       @apply select-none;
       @apply pointer-events-none;
       @apply w-full;
+      @apply mb-6;
 
       @screen md {
         @apply w-10o12;
       }
 
       @screen lg {
-        width: 680px;
+        width: 540px;
       }
 
       img {
         @apply relative;
         @apply z-10;
-
-        &.u {
-          @apply vertical-center left-0;
-          @apply w-4o12;
-          @apply object-contain;
-          @apply z-0;
-
-          max-height: 120%;
-        }
-
-        &.e {
-          left: 33%;
-        }
-
-        &.t {
-          left: 66%;
-        }
       }
     }
 
@@ -127,11 +111,13 @@
       @apply relative;
       @apply text-center;
 
-      margin-top: -33px;
       max-width: var(--width-max);
 
-      @screen md {
-        margin-top: -33px;
+      h1 {
+        @screen md {
+          @apply w-10o12;
+          @apply mx-auto;
+        }
       }
 
       h4 {

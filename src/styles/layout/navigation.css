@@ -47,7 +47,7 @@ $hb-bar: 2px;
     button {
       &:after,
       &:before {
-        /* background-color: var(--background); */
+
       }
 
       &:before {
