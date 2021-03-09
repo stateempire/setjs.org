@@ -3,16 +3,18 @@
       <li class="logo"><img data-href="/" src="/images/common/logo.svg" /></li>
       <li class="navigation" data-name="navMenu">
         <a data-href="docs">Documentation</a>
-        <a target="_blank" href="https://blog.setjs.com">Blog</a>
+        <a target="_blank" href="https://blog.stateempire.com">Blog</a>
         <div class="menu-dropdown" data-template="config-menu">
-          <a class="menu-dropdown-btn icon-btn">Newsletter</a>
+          <a class="menu-dropdown-btn">Newsletter</a>
           <div class="menu">
             <aside>
               <h5>Join our Newsletter</h5>
               <p>Keep up with what we're thinking, saying, and doing with SETjs. It may not be often, but it will be damn interesting.</p>
-              <form>
-                <input type="email" name="" value="" placeholder="Your email address ..." />
+              <form data-name='mcForm' data-act='form' data-func='mcSubmit' action='https://stateempire.us16.list-manage.com/subscribe/post-json?u=a9b3015d6454b0675904fd82d&id=b58a3b0789&c=?'>
+                <div style='position: absolute; left: -5000px;' aria-hidden='true'><input type='text' name='b_a9b3015d6454b0675904fd82d_b58a3b0789' tabindex='-1' value='' /></div>
+                <input type="email" name="EMAIL" value="" placeholder="Your email address ..." />
                 <button type="submit">Subscribe</button>
+                <div class="mc-msg"></div>
               </form>
             </aside>
           </div>

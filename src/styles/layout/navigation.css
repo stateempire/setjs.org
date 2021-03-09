@@ -79,11 +79,9 @@ $hb-bar: 2px;
 
 nav {
   @apply fixed;
-  /* @apply absolute; */
   @apply top-0 left-0;
   @apply grid grid-flow-row;
   @apply w-full;
-  @apply overflow-hidden;
   @apply pointer-events-none;
   @apply z-50;
 
@@ -156,11 +154,50 @@ nav {
         @screen md {
           @apply hidden;
         }
+
+        /* Hamburger */
+        button {
+          @apply block;
+          @apply relative;
+          @apply p-0 m-0;
+          @apply border-none rounded-none;
+          @apply opacity-100;
+
+          height: $hb-bar;
+          width: $hb-width;
+
+          background-color: transparent;
+
+          transition: opacity 0.88s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+          will-change: opacity;
+
+          &:after,
+          &:before {
+            @apply absolute left-0;
+            @apply w-full;
+
+            content: '';
+
+            height: $hb-bar;
+            background-color: var(--text);
+
+            transition: all 0.44s ease;
+          }
+
+          &:before {
+            top: -8px;
+          }
+
+          &:after {
+            top: 8px;
+          }
+        }
       }
     }
 
     a {
       @apply relative;
+      @apply cursor-pointer;
       @apply mx-4;
 
       color: var(--text);
@@ -174,45 +211,93 @@ nav {
     }
   }
 
-  /* Hamburger */
-  button {
-    @apply block;
+  &.scrolling-down {
+
+  }
+
+  .menu-dropdown {
     @apply relative;
-    @apply p-0 m-0;
-    @apply border-none rounded-none;
-    @apply opacity-100;
+    @apply inline-flex;
 
-    height: $hb-bar;
-    width: $hb-width;
+    &.open {
+      .menu {
+        @apply opacity-100;
+        @apply pointer-events-auto;
 
-    background-color: transparent;
-
-    transition: opacity 0.88s cubic-bezier(0.230, 1.000, 0.320, 1.000);
-    will-change: opacity;
-
-    &:after,
-    &:before {
-      @apply absolute left-0;
-      @apply w-full;
-
-      content: '';
-
-      height: $hb-bar;
-      background-color: var(--text);
-
-      transition: all 0.44s ease;
+        transform: translateY(0%);
+      }
     }
 
-    &:before {
-      top: -8px;
-    }
+    .menu {
+      @apply fixed right-0;
+      @apply opacity-0;
+      @apply pointer-events-none;
+      @apply z-50;
 
-    &:after {
-      top: 8px;
+      top: var(--height-navigation);
+      width: 600px;
+
+      transform: translateY(calc(var(--height-navigation) / 2 * -1));
+
+      transition: opacity 0.44s cubic-bezier(0.230, 1.000, 0.320, 1.000),
+                  transform 1.11s cubic-bezier(0.230, 1.000, 0.320, 1.000);
     }
   }
 
-  &.scrolling-down {
-    /* transform: translate(0, -100%); */
+  aside {
+    @apply rounded;
+    @apply mx-8;
+    @apply px-6 py-6;
+
+    background-color: var(--link-color);
+
+    p,
+    h5,
+    button {
+      color: var(--white);
+    }
+
+    .close {
+      @apply absolute top-0 right-0;
+      @apply my-4 mx-4;
+      @apply cursor-pointer;
+
+      color: var(--white);
+    }
+
+    form {
+      @apply flex;
+      @apply flex-row;
+      @apply justify-between;
+    }
+
+    input {
+      @apply w-full;
+      @apply bg-transparent;
+      @apply border-b border-solid;
+      @apply font-normal;
+      @apply outline-none;
+
+      color: var(--white);
+      border-color: var(--white);
+
+      font-family: var(--font-mono);
+      font-size: 16px;
+
+      &::placeholder {
+        @apply opacity-100;
+
+        color: var(--white);
+      }
+    }
+
+    button {
+      border-color: var(--white);
+
+      &:focus,
+      &:hover {
+        color: var(--white);
+      }
+    }
   }
 }

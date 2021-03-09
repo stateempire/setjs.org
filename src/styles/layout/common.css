@@ -29,6 +29,12 @@ main {
       }
     }
   }
+
+  pre {
+    > h6 {
+      @apply mb-0 !important;
+    }
+  }
 }
 
 .progress-bar {

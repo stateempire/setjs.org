@@ -9,7 +9,7 @@ local:
   site_port: 65040
 development:
   environment: development
-  domain: dev.setjs.org
+  domain: beta.setjs.org
   subdomain: false
   sslcert: arn:aws:acm:us-east-1:423611532717:certificate/cf0a261a-91f5-4131-b937-689af2de4ac9
   cache_control_max_age: 360

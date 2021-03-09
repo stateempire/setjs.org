@@ -1,13 +1,14 @@
 /* purgecss start ignore */
 pre {
-  @apply px-6 py-6;
   @apply rounded-sm;
+  @apply overflow-hidden;
   @apply mb-10;
 
   background: #111111;
 
   h6 {
-    @apply mb-6;
+    @apply px-6 pt-6;
+    @apply mb-0;
 
     color: #ffffff;
     font-size: 18px;
@@ -17,6 +18,12 @@ pre {
 
   code {
     @apply px-0 py-0;
+  }
+
+  > code {
+    @apply px-6 py-6;
+    @apply overflow-hidden;
+    @apply overflow-x-scroll;
   }
 }
 

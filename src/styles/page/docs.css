@@ -162,64 +162,6 @@
       }
     }
 
-    /* pre {
-      @apply whitespace-pre;
-      @apply border border-solid;
-      @apply rounded-sm;
-      @apply mb-10;
-      @apply px-6 py-10;
-      @apply overflow-scroll;
-
-      border-color: var(--grey-light);
-      background-color: var(--background);
-
-      counter-reset: section;
-
-      code {
-        @apply relative;
-        @apply block;
-        @apply py-0 pl-10;
-        @apply whitespace-pre;
-
-        min-height: 26px;
-
-        color: var(--text);
-        background-color: transparent;
-
-        font-size: 15px;
-
-        &:after,
-        &:before {
-          @apply hidden;
-        }
-
-        &:before {
-          @apply block;
-          @apply vertical-center left-0;
-          @apply opacity-25;
-
-          counter-increment: section;
-          content: counter(section);
-
-          font-size: 14px;
-        }
-
-        em {
-          @apply not-italic;
-          @apply whitespace-no-wrap;
-
-          color: var(--grey-mid);
-        }
-
-        span {
-          @apply py-1;
-          @apply rounded-sm;
-
-          background-color: #fff5c8;
-        }
-      }
-    } */
-
     em {
       @apply whitespace-pre-wrap;
       @apply not-italic;

@@ -110,7 +110,7 @@ body {
   pre {
     @apply flex;
     @apply flex-col;
-    @apply whitespace-pre-wrap;
+    @apply whitespace-pre;
   }
 
   address,

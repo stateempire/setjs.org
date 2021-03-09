@@ -131,7 +131,7 @@
       max-width: var(--width-max);
 
       @screen md {
-        margin-top: -66px;
+        margin-top: -33px;
       }
 
       h4 {
