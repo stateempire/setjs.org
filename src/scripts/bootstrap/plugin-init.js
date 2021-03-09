@@ -21,5 +21,6 @@ import 'setjs/plugins/template-funcs/misc.js';
 
 /*------------Application plugins-----------*/
 import 'plugins/template-funcs/lazy-load.js';
+import 'plugins/template-actions/mailchimp.js';
 // import 'plugins/misc/lottie.js';
 import 'plugins/misc/navigation-docs.js';
