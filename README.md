@@ -1,4 +1,4 @@
-<a href="https://setjs.org"><img src="http://dev.setjs.org/images/social/github.png" width="200"></a>
+<a href="https://setjs.org"><img src="http://setjs.org/images/social/github.png" width="200"></a>
 <br />
 
 ## SETjs – A pragmatic frontend framework for the Web

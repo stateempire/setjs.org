@@ -159,6 +159,22 @@
 
           font-size: 14px;
         }
+
+        &.soon {
+          > * {
+            @apply opacity-25;
+          }
+
+          h5 {
+            &:after {
+              content: ' – coming soon';
+            }
+          }
+
+          a {
+            @apply pointer-events-none;
+          }
+        }
       }
     }
 
