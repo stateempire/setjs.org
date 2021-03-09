@@ -1,79 +1,19 @@
-$hb-height: 30px;
-$hb-width: 36px;
-$hb-bar: 2px;
-
 .nav {
+  &-open,
+  &-closing {
+
+  }
+
+  &-open {
+
+  }
+
   &-opening {
 
   }
 
-  &-open,
   &-closing {
-    @apply w-screen h-screen;
-    @apply overflow-hidden;
 
-    nav {
-      @apply w-screen h-screen;
-      @apply overflow-hidden;
-    }
-
-    main {
-      @apply opacity-0;
-    }
-
-    .navigation {
-      @apply pointer-events-auto;
-      @apply z-40;
-
-      transform: translate(0, 0);
-    }
-  }
-
-  &-open {
-    .navigation {
-      @apply opacity-100;
-
-      a {
-        animation-name: fib;
-
-        @for $i from 1 to 6 {
-          &:nth-child($i) {
-            animation-delay: calc($i * 0.11s);
-          }
-        }
-      }
-    }
-
-    button {
-      &:after,
-      &:before {
-
-      }
-
-      &:before {
-        transform: translateY(calc(($hb-height / 2) - ($hb-bar / 2))) rotateZ(45deg)
-      }
-
-      &:after {
-        transform: translateY(calc((-$hb-height / 2) - (-$hb-bar / 2))) rotateZ(-45deg);
-      }
-    }
-  }
-
-  &-closing {
-    .navigation {
-      @apply opacity-0;
-
-      a {
-        animation-name: fot;
-
-        @for $i from 1 to 6 {
-          &:nth-child($i) {
-            animation-delay: calc($i * 0.055s);
-          }
-        }
-      }
-    }
   }
 }
 
@@ -119,77 +59,15 @@ nav {
       &.navigation {
         @apply flex;
         @apply items-center;
-        @apply py-6 px-6;
+        @apply ml-auto;
 
         transition: opacity 0.88s cubic-bezier(0.230, 1.000, 0.320, 1.000);
         will-change: opacity;
 
-        @screen md {
-          @apply ml-auto;
-        }
-
-        @screen xm {
-          @apply fixed top-0 right-0;
-          @apply flex-col;
-          @apply justify-center;
-          @apply min-h-screen h-full;
-          @apply w-full;
-          @apply pointer-events-none;
-          @apply opacity-0;
-
-          background-color: var(--background);
-
-          transform: translate(105%, 0);
-          z-index: -1;
-        }
-      }
-
-      &.mobile {
-        @apply flex;
-        @apply items-center;
-        @apply h-full;
-        @apply cursor-pointer;
-        @apply z-50;
-
-        @screen md {
-          @apply hidden;
-        }
-
-        /* Hamburger */
-        button {
-          @apply block;
-          @apply relative;
-          @apply p-0 m-0;
-          @apply border-none rounded-none;
-          @apply opacity-100;
-
-          height: $hb-bar;
-          width: $hb-width;
-
-          background-color: transparent;
-
-          transition: opacity 0.88s cubic-bezier(0.230, 1.000, 0.320, 1.000);
-          will-change: opacity;
-
-          &:after,
-          &:before {
-            @apply absolute left-0;
-            @apply w-full;
-
-            content: '';
-
-            height: $hb-bar;
-            background-color: var(--text);
-
-            transition: all 0.44s ease;
-          }
-
-          &:before {
-            top: -8px;
-          }
-
-          &:after {
-            top: 8px;
+        @screen xs {
+          .menu-dropdown,
+          [target='_blank'] {
+            @apply hidden;
           }
         }
       }
@@ -198,9 +76,13 @@ nav {
     a {
       @apply relative;
       @apply cursor-pointer;
-      @apply mx-4;
+      @apply ml-4;
 
       color: var(--text);
+
+      @screen md {
+        @apply ml-6;
+      }
 
       &:before {
         @apply relative;
@@ -244,6 +126,32 @@ nav {
     }
   }
 
+  form {
+    &.error,
+    &.success {
+      fieldset {
+        @apply hidden;
+      }
+    }
+
+    &.error {
+      aside {
+        background-color: #fa8d53;
+      }
+    }
+
+    &.success {
+      aside {
+        background-color: #72b847;
+      }
+    }
+
+    .mc-msg {
+      @apply font-semibold;
+      @apply mb-0;
+    }
+  }
+
   aside {
     @apply rounded;
     @apply mx-8;
@@ -251,21 +159,16 @@ nav {
 
     background-color: var(--link-color);
 
+    transition: background-color 1.22s cubic-bezier(0.230, 1.000, 0.320, 1.000);
+    will-change: background-color;
+
     p,
     h5,
     button {
       color: var(--white);
     }
 
-    .close {
-      @apply absolute top-0 right-0;
-      @apply my-4 mx-4;
-      @apply cursor-pointer;
-
-      color: var(--white);
-    }
-
-    form {
+    fieldset {
       @apply flex;
       @apply flex-row;
       @apply justify-between;

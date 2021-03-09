@@ -22,7 +22,7 @@ function mcSubmit({$el, end}) {
       end();
       if (result === 'success') {
         $el.addClass('success');
-        $msg.text('Thank you, we’ll be in touch');
+        $msg.text('Amazing, great to have you part of the list, we’ll be in touch');
       } else {
         if (message.indexOf('already subscribed') >= 0) {
           showError('It seems you’re already submitted your details, which is great! We\'ll be in touch.');
@@ -43,4 +43,3 @@ function mcSubmit({$el, end}) {
     }, 3500);
   }
 }
-
