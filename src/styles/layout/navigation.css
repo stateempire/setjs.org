@@ -1,3 +1,4 @@
+/* purgecss start ignore */
 .nav {
   &-open,
   &-closing {
@@ -204,3 +205,4 @@ nav {
     }
   }
 }
+/* purgecss end ignore */

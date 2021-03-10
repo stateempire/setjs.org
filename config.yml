@@ -21,4 +21,4 @@ master:
   sslcert: arn:aws:acm:us-east-1:423611532717:certificate/cf0a261a-91f5-4131-b937-689af2de4ac9
   cache_control_max_age: 2592000
   server_edge: false
-  distribution_id:
+  distribution_id: E26A0GSHYJODPT

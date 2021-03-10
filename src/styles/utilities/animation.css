@@ -1,3 +1,4 @@
+/* purgecss start ignore */
 [data-animation] {
   visibility: hidden;
   opacity: 0;
@@ -65,3 +66,4 @@
     }
   }
 }
+/* purgecss end ignore */
