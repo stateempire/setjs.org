@@ -42,13 +42,13 @@
       <h5>role</h5>
       <p>Specifies whether the page requires a certain access privilege for viewing. The flag creation will typically be done by calling <em>roleFlag()</em> or <em>cascadeRoleFlag()</em> functions defined in <em>setjs/kernel/roles.js</em> module.</p>
       <h5>getRole</h5>
-      <p>Use a function instead of a fixed role to return the access flag. Otherwise, works similar to the role field.</p>
+      <p>Uses a function instead of a fixed role to return the access flag. Otherwise, works similar to the role field.</p>
       <h5>assets</h5>
       <p>An array of JS or CSS URL arrays to be loaded by the <em>core/asset-loader.js</em> module</p>
       <h5>getAssets</h5>
-      <p>Similar to <em>getRole</em>, instead of a fixed <em>assets&lsqb;&rsqb;</em> array, use a function to dynamically decide what assets to load</p>
+      <p>Similar to <em>getRole</em>. Instead of a fixed <em>assets&lsqb;&rsqb;</em> array, uses a function to dynamically decide what assets to load</p>
       <h5>handleRoute</h5>
-      <p>Return a truthy value if the page wants to handle the route change instead of allowing the page loader to load the route</p>
+      <p>Returns a truthy value if the page wants to handle the route change instead of allowing the page loader to load the route</p>
       <h5>once</h5>
       <p>For one-time loading e.g. loading some scripts etc. Must call either <em>opts.success()</em> or <em>opts.error()</em> for page loader to proceed. <em>once</em> will be called again on next visit if you end it with <em>opts.error()</em>.</p>
       <h5>preload</h5>
